@@ -5,13 +5,22 @@ from django.conf import settings
 from django.contrib import admin
 admin.autodiscover()
 
+# Generale
 urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
     url(r'^grappelli/', include('grappelli.urls')),
 )
 
+# App core
 urlpatterns += patterns('core',
     url(r'^$', 'views.render_to_home', name="home"),
+)
+
+# App log
+urlpatterns += patterns('log',
+    url(r'^note/$', 'views.notes', name="notes"),
+    url(r'^note/(?P<id_release>\d{1,10})/$', 'views.notes_detail', name="notes_detail"),
+    url(r'^note/sviluppo/$', 'views.notes_upcoming', name="notes_upcoming"),
 )
 
 if settings.DEBUG == True:

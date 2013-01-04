@@ -129,6 +129,7 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'media',
     'core',
+    'log',
 )
 
 # A sample logging configuration. The only tangible logging
