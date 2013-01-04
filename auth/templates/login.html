@@ -37,10 +37,9 @@
 {% block pagename %}Login{% endblock %}
 {% block content %}	
 
-<div class="grid_8 push_2">
-    <form action="{% url 'login' %}" method="POST" id="login-form">{% csrf_token %}
-        <div class="signin-box">
-        <form action="#" method="GET" id="login-form">
+<div class="grid_6 push_3">
+    <div class="signin-box">
+        <form action="{% url 'login' %}" method="POST" id="login-form">{% csrf_token %}
             <label>
                 <strong class="email-label">Username</strong>
                 <input {% if error_message %}class="form-error"{% endif %} type="text" name="username" />
@@ -49,12 +48,17 @@
                 <strong class="passw-label">Password</strong>
                 <input {% if error_message %}class="form-error"{% endif %} type="password" name="password"  />
             </label>
-            <label>
-              <p>Form di Login: accedi con la mail istituzionale (pippo.pluto@studenti.unipd.it).</p>
-            </label>
+            {% if error_message %}
+                <label>
+                    <p class="errormsg">La password o il nome utente specificato non è corretto.</p> 
+                </label>
+            {% endif %}
             <input type="submit" class="button small square custom" value="Accedi" />
+            <label>
+                <p>Accedi con la mail istituzionale (pippo.pluto@studenti.unipd.it).</p>
+            </label>
         </form>
-        </div>
+    </div>
         <!--
         <fieldset>
             <legend>Login Form</legend>
@@ -91,7 +95,6 @@
     	</div>
     	</fieldset>
         -->
-    </form>
 </div>
 
 <div class="clear"></div>
