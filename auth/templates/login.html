@@ -1,44 +1,98 @@
 {% extends "base.html" %}
+
+{% block extrahead %}
+<style type="text/css">
+#login-wrapper #login-top {
+    width: 100%;
+    padding: 140px 0 50px 0;
+    text-align: center;
+}
+
+#topbar {
+    text-align: left;
+    background: #dc4916;
+    position: relative;
+    zoom: 1;
+    width: 100% !important;
+    z-index: 6000;
+    box-shadow: 0 0 10px black;
+    padding: 140px 0 50px 0;
+    text-align: center;
+}
+
+#topbar-inside {
+    width: 960px;
+    margin: 0 auto;
+    position: relative;
+    font-size: 1.5em;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+}
+
+</style>
+{% endblock %}
+
 {% block title %}Vita / Login{% endblock %}
 {% block pagename %}Login{% endblock %}
 {% block content %}	
 
-<div class="grid_12">
-<form action="{% url 'login' %}" method="POST" id="login-form">{% csrf_token %}
-    <fieldset>
-        <legend>Login Form</legend>
-    {% if error_message %}
-        <div class="formee-msg-error">
-        	<h3>Errore nel processo di autenticazione!</h3>
-        	<ul>
-          		<li>Per favore immetti uno <strong>Username</strong> valido.</li>
-          		<li>Per favore immetti una <strong>Password</strong> valida.</li>
-        	</ul>
+<div class="grid_8 push_2">
+    <form action="{% url 'login' %}" method="POST" id="login-form">{% csrf_token %}
+        <div class="signin-box">
+        <form action="#" method="GET" id="login-form">
+            <label>
+                <strong class="email-label">Username</strong>
+                <input {% if error_message %}class="form-error"{% endif %} type="text" name="username" />
+            </label>
+            <label>
+                <strong class="passw-label">Password</strong>
+                <input {% if error_message %}class="form-error"{% endif %} type="password" name="password"  />
+            </label>
+            <label>
+              <p>Form di Login: accedi con la mail istituzionale (pippo.pluto@studenti.unipd.it).</p>
+            </label>
+            <input type="submit" class="button small square custom" value="Accedi" />
+        </form>
         </div>
-        <div class="grid-6-12">
-                <label>Username <em class="formee-req">*</em></label>
-                <input type="text" name="username" class="formee-error" />
-        </div>
-        <div class="grid-6-12">
-                <label>Password <em class="formee-req">*</em></label>
-                <input type="text" name="password" class="formee-error" />
-        </div>
-	{% else %}
-	    <div class="login">
-	        <div class="grid-12-12">
-	            <label>Username <em class="formee-req">*</em></label>
-	            <input type="text" name="username" />
-	        </div>
-	        <div class="grid-12-12">
-	            <label>Password <em class="formee-req">*</em></label>
-	            <input type="password" name="password" />
-	        </div>    
-        </div>   
-	{% endif %}      
-	<div class="grid_12">
-	    <input class="left" type="submit" title="Login" value="Login" />
-	</div>
-	</fieldset>
-</form>
+        <!--
+        <fieldset>
+            <legend>Login Form</legend>
+        {% if error_message %}
+            <div class="formee-msg-error">
+            	<h3>Errore nel processo di autenticazione!</h3>
+            	<ul>
+              		<li>Per favore immetti uno <strong>Username</strong> valido.</li>
+              		<li>Per favore immetti una <strong>Password</strong> valida.</li>
+            	</ul>
+            </div>
+            <div class="grid-6-12">
+                    <label>Username <em class="formee-req">*</em></label>
+                    <input type="text" name="username" class="formee-error" />
+            </div>
+            <div class="grid-6-12">
+                    <label>Password <em class="formee-req">*</em></label>
+                    <input type="text" name="password" class="formee-error" />
+            </div>
+    	{% else %}
+    	    <div class="login">
+    	        <div class="grid-12-12">
+    	            <label>Username <em class="formee-req">*</em></label>
+    	            <input type="text" name="username" />
+    	        </div>
+    	        <div class="grid-12-12">
+    	            <label>Password <em class="formee-req">*</em></label>
+    	            <input type="password" name="password" />
+    	        </div>    
+            </div>   
+    	{% endif %}      
+    	<div class="grid_12">
+    	    <input class="left" type="submit" title="Login" value="Login" />
+    	</div>
+    	</fieldset>
+        -->
+    </form>
 </div>
+
+<div class="clear"></div>
 {% endblock %}
