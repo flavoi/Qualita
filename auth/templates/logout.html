@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Vita / Logout{% endblock %}
+{% block pagename %}Logout{% endblock %}
+{% block banner %}	
+<div class="grid_8 prefix_2">
+<form class="formee" action="{% url 'login' %}" method="POST">
+    <div class="formee-msg-success">
+    	<h3>Accesso Annullato!</h3>
+	    <ul>
+	      	<li>Puoi uscire dal sito oppure <strong><a href="{% url 'login' %}">accedere di nuovo</a></strong>.</li>
+	    </ul>        
+    </div>  
+</form>
+</div>
+{% endblock %}

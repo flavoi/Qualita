@@ -8,12 +8,18 @@ admin.autodiscover()
 # Generale
 urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^grappelli/', include('grappelli.urls')),
+    # url(r'^grappelli/', include('grappelli.urls')),
 )
 
 # App core
 urlpatterns += patterns('core',
     url(r'^$', 'views.render_to_home', name="home"),
+)
+
+# App auth
+urlpatterns += patterns('auth',
+    url(r'login/$', 'views.login', {'template_name':'login.html'}, name="login"),
+    url(r'logout/$', 'views.logout', {'template_name':'logout.html'}, name="logout"),
 )
 
 # App log

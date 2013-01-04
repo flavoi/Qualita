@@ -22,9 +22,9 @@
                 <tbody>
                     {% for release in releases %}
                         <tr>
-                            <td><a href="{% url notes_detail release.id %}">{{ release.id }}</a></td>
-                            <td><a href="{% url notes_detail release.id %}">{{ release.versione }}</a></td>
-                            <td><a href="{% url notes_detail release.id %}">{{ release.data_rilascio }}</a></td>
+                            <td><a href="{% url 'notes_detail' release.id %}">{{ release.id }}</a></td>
+                            <td><a href="{% url 'notes_detail' release.id %}">{{ release.versione }}</a></td>
+                            <td><a href="{% url 'notes_detail' release.id %}">{{ release.data_rilascio }}</a></td>
                         </tr>
                     </a>
                     {% endfor %}
@@ -37,8 +37,8 @@
         <hr class="style-eight" />
 
         <div class="grid_12">
-            <a href="{% url home %}"><input class="button small square custom" type="button" title="Fine" value="Fine Lettura" /></a>
-            <a href="{% url notes_upcoming %}"><input class="button small square custom" type="button" title="Sviluppo" value="In sviluppo" /></a>
+            <a href="{% url 'home' %}"><input class="button small square custom" type="button" title="Fine" value="Fine Lettura" /></a>
+            <a href="{% url 'notes_upcoming' %}"><input class="button small square custom" type="button" title="Sviluppo" value="In sviluppo" /></a>
         </div>
     {% endif %}
 

@@ -6,7 +6,7 @@
     {% if nonews %}
             <h2 class="title">Questo cantiere &egrave; vuoto</h2>
                 <p>Al momento <strong>non</strong> ci sono aggiornamenti in vista.</p>
-                <p>Puoi <strong><a href="{% url notes %}">visitare le note</a></strong> oppure <strong><a href="{% url home %}">tornare alla home.</p>
+                <p>Puoi <strong><a href="{% url 'notes' %}">visitare le note</a></strong> oppure <strong><a href="{% url 'home' %}">tornare alla home.</p>
             </div>
     {% else %}
         <div class="grid_12">
@@ -41,8 +41,8 @@
         <hr class="style-eight" />
 
         <div class="grid_12">
-            <a href="{% url home %}"><input class="button small square custom" type="button" title="Fine" value="Fine Lettura" /></a>
-            <a href="{% url notes %}"><input class="button small square custom" type="button" title="Note" value="Tutte le Note" /></a>
+            <a href="{% url 'home' %}"><input class="button small square custom" type="button" title="Fine" value="Fine Lettura" /></a>
+            <a href="{% url 'notes' %}"><input class="button small square custom" type="button" title="Note" value="Tutte le Note" /></a>
             </div>
     {% endif %}
 

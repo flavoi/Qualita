@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block title %}Vita / Login{% endblock %}
+{% block pagename %}Login{% endblock %}
+{% block content %}	
+
+<div class="grid_12">
+<form action="{% url 'login' %}" method="POST" id="login-form">{% csrf_token %}
+    <fieldset>
+        <legend>Login Form</legend>
+    {% if error_message %}
+        <div class="formee-msg-error">
+        	<h3>Errore nel processo di autenticazione!</h3>
+        	<ul>
+          		<li>Per favore immetti uno <strong>Username</strong> valido.</li>
+          		<li>Per favore immetti una <strong>Password</strong> valida.</li>
+        	</ul>
+        </div>
+        <div class="grid-6-12">
+                <label>Username <em class="formee-req">*</em></label>
+                <input type="text" name="username" class="formee-error" />
+        </div>
+        <div class="grid-6-12">
+                <label>Password <em class="formee-req">*</em></label>
+                <input type="text" name="password" class="formee-error" />
+        </div>
+	{% else %}
+	    <div class="login">
+	        <div class="grid-12-12">
+	            <label>Username <em class="formee-req">*</em></label>
+	            <input type="text" name="username" />
+	        </div>
+	        <div class="grid-12-12">
+	            <label>Password <em class="formee-req">*</em></label>
+	            <input type="password" name="password" />
+	        </div>    
+        </div>   
+	{% endif %}      
+	<div class="grid_12">
+	    <input class="left" type="submit" title="Login" value="Login" />
+	</div>
+	</fieldset>
+</form>
+</div>
+{% endblock %}
