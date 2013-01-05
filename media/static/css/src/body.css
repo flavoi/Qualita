@@ -47,6 +47,11 @@ hr.style-eight:after {
 	color: white;
 }
 
+.right {
+    float:right;
+    font-size: 0.7em;
+}
+
 #botbar {
     height: 35px;  
     width: 100% !important; 

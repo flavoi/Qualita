@@ -21,6 +21,11 @@
 <div id="topbar">
     <div id="topbar-inside">
         <span class="logo">Q</span>UALIT&Agrave;
+        {% block top-buttons %}
+            <div class="right">
+                <a class="button small square custom" href="{% url 'logout' %}">Logout</a>
+            </div>
+        {% endblock %}
     </div>
 </div>
 
@@ -117,6 +122,9 @@
         </form> 
     </div>
 
+{% endblock %}
+
+{% block footer %}
     <div class="clear"></div>
 
     <div class="grid_12">
@@ -129,8 +137,8 @@
             </div>
         </div>
     </div> 
-
 {% endblock %}
+
 </div>
 
 </body>

@@ -19,7 +19,7 @@ urlpatterns += patterns('core',
 # App auth
 urlpatterns += patterns('auth',
     url(r'login/$', 'views.login', {'template_name':'login.html'}, name="login"),
-    url(r'logout/$', 'views.logout', {'template_name':'logout.html'}, name="logout"),
+    url(r'logout/$', 'views.logout_then_login', {'login_url':'login'}, name="logout"),
 )
 
 # App log
