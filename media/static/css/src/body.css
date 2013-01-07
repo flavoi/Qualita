@@ -1,7 +1,7 @@
 
 /*
 	=======================================
-	Struttura del Corpe - Progetto Qualità
+	Struttura del Corpo - Progetto Qualità
 	=======================================
 */
 
@@ -47,9 +47,9 @@ hr.style-eight:after {
 	color: white;
 }
 
-.right {
+#tobar-buttons{
+    position:relative;
     float:right;
-    font-size: 0.7em;
 }
 
 #botbar {
@@ -87,3 +87,4 @@ hr.style-eight:after {
     clear: both;  
     height: 0;
 }
+
