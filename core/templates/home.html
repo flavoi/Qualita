@@ -25,45 +25,15 @@
     <hr class="style-eight" />
 
     <div class="grid_6 push_3">
-        <div id="mainmenu">
-   <ul>
-        {% for int in interrogazioni %}
-            <li>
-                <a href="#">{{ int.titolo }}</a>
-                <p class="description">{{ int.descrizione }}</p>
-            </li>
-        {% endfor %}
-   </ul>
-</div>
-
+    <div id="mainmenu">
+        <ul>
+            {% for int in interrogazioni %}
+                <li>
+                    <a href="{% url 'valutazioni' int.id %}">{{ int.titolo }}</a>
+                    <p class="description">{{ int.descrizione }}</p>
+                </li>
+            {% endfor %}
+        </ul>
     </div>
-<!--
-    <div class="grid_4">
-        <form action="#" method="GET">
-            <h2>Rilevanza</h2>
-            <input type="radio" name="sex" value="scarso"> scarso<br />
-            <input type="radio" name="sex" value="insufficiente"> insufficiente<br />
-            <input type="radio" name="sex" value="sufficiente"> sufficiente<br />
-            <input type="radio" name="sex" value="buono"> buono<br />
-        </form> 
     </div>
-
-    <div class="grid_4">
-        <form action="#" method="GET">
-            <h2>Interrogazioni</h2>
-            <input type="checkbox" value="ricerca"> ricerca<br />
-            <input type="checkbox" value="unipd"> unipd<br />
-            <input type="checkbox" value="malattia"> sesta malattia<br />
-            <input type="checkbox" value="social"> social<br />
-        </form> 
-    </div>
-
-    <div class="grid_4">
-        <form action="#" method="GET">
-            <h2>Commento</h2>
-            <textarea></textarea>
-            <input type="submit" class="button small square custom" value="Invia" />
-        </form> 
-    </div>
--->
 {% endblock %}

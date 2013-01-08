@@ -14,6 +14,7 @@ urlpatterns = patterns('',
 # App core
 urlpatterns += patterns('core',
     url(r'^$', 'views.render_to_home', name="home"),
+    url(r'^valutazioni/(?P<id_interrogazione>\d{1,10})/$', 'views.valutazioni', name="valutazioni"),
 )
 
 # App auth
