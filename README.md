@@ -1,5 +1,5 @@
-## Qualita
-===========
+## Progetto Qualità 
+===================
 
 I primi sistemi di Information Retrieval lavoravano su collezioni di qualità omogenea come documenti giuridici e articoli medici. 
 Con l’avvento del web, le tecniche tradizionali di reperimento dell’informazione sono risultate poco efﬁcaci
