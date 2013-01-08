@@ -1,4 +1,4 @@
-Qualita
+## Qualita
 ===========
 
 I primi sistemi di Information Retrieval lavoravano su collezioni di qualità omogenea come documenti giuridici e articoli medici. 
