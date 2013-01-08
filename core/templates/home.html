@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block title %} Home {% endblock %}
+{% block extrahead %}
+    <style type="text/css">
+        #mainmenu ul { 
+            list-style-image: url("https://help.github.com/assets/li-chevron-b3fe6cd1d468cc4b76c641be3166c03d.png"); 
+            font-size:18px; 
+        }
+        #mainmenu ul li { line-height:30px; }
+
+        #mainmenu a, #mainmenu a:visited {
+            text-decoration: none;
+        }
+
+        #mainmenu a:hover{
+            border-bottom:1px solid #dc4916;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <h2 class="title">Interrogazioni</h2>
+    <hr class="style-eight" />
+
+    <div class="grid_6 push_3">
+        <div id="mainmenu">
+   <ul>
+      <li><a href="#">Java</a></li>
+      <li>.NET</li>
+      <li>C++</li>
+      <li>PHP</li>
+   </ul>
+</div>
+
+    </div>
+<!--
+    <div class="grid_4">
+        <form action="#" method="GET">
+            <h2>Rilevanza</h2>
+            <input type="radio" name="sex" value="scarso"> scarso<br />
+            <input type="radio" name="sex" value="insufficiente"> insufficiente<br />
+            <input type="radio" name="sex" value="sufficiente"> sufficiente<br />
+            <input type="radio" name="sex" value="buono"> buono<br />
+        </form> 
+    </div>
+
+    <div class="grid_4">
+        <form action="#" method="GET">
+            <h2>Interrogazioni</h2>
+            <input type="checkbox" value="ricerca"> ricerca<br />
+            <input type="checkbox" value="unipd"> unipd<br />
+            <input type="checkbox" value="malattia"> sesta malattia<br />
+            <input type="checkbox" value="social"> social<br />
+        </form> 
+    </div>
+
+    <div class="grid_4">
+        <form action="#" method="GET">
+            <h2>Commento</h2>
+            <textarea></textarea>
+            <input type="submit" class="button small square custom" value="Invia" />
+        </form> 
+    </div>
+-->
+{% endblock %}
