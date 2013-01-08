@@ -7,6 +7,9 @@ class InterrogazioneAdmin(admin.ModelAdmin):
 class URLAdmin(admin.ModelAdmin):
     list_display = ('indirizzo', 'percorso_su_disco')
 
+class ScoreAdmin(admin.ModelAdmin):
+    list_display = ('rilevanza', 'leggibilita', 'fonte', 'stile', 'commento', 'url')
 
 admin.site.register(Interrogazione, InterrogazioneAdmin)
 admin.site.register(URL, URLAdmin)
+admin.site.register(Score, ScoreAdmin)

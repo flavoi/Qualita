@@ -17,3 +17,19 @@ class Interrogazione(models.Model):
         verbose_name_plural = "Interrogazioni"
     def __unicode__(self):
         return u'%s' % (self.titolo)
+
+class Score(models.Model):
+    VALUTAZIONI_SCELTE = (
+        ('0', 'scarso'), 
+        ('1', 'insufficiente'), 
+        ('2', 'sufficiente'),
+        ('3', 'buono'),
+    )
+    rilevanza = models.CharField(max_length=2, choices=VALUTAZIONI_SCELTE)
+    fonte = models.CharField(max_length=2, choices=VALUTAZIONI_SCELTE)
+    leggibilita = models.CharField(max_length=2, choices=VALUTAZIONI_SCELTE)
+    stile = models.CharField(max_length=2, choices=VALUTAZIONI_SCELTE)
+    commento = models.TextField(blank=True)
+    url = models.ForeignKey(URL)
+    def __unicode__(self):
+        return u'%s' % (self.rilevanza)
