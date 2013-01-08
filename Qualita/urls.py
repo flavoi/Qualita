@@ -22,13 +22,6 @@ urlpatterns += patterns('auth',
     url(r'logout/$', 'views.logout_then_login', {'login_url':'login'}, name="logout"),
 )
 
-# App log
-urlpatterns += patterns('log',
-    url(r'^note/$', 'views.notes', name="notes"),
-    url(r'^note/(?P<id_release>\d{1,10})/$', 'views.notes_detail', name="notes_detail"),
-    url(r'^note/sviluppo/$', 'views.notes_upcoming', name="notes_upcoming"),
-)
-
 if settings.DEBUG == True:
     # Supporto a MEDIA_ROOT e JQUERY_ROOT (solo in sviluppo)
     urlpatterns += patterns('',
