@@ -129,7 +129,6 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'media',
     'core',
-    'log',
     'auth',
 )
 
