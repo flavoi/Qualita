@@ -26,10 +26,9 @@
     <div class="grid_6 push_3">
         <div id="mainmenu">
    <ul>
-      <li><a href="#">Java</a></li>
-      <li>.NET</li>
-      <li>C++</li>
-      <li>PHP</li>
+        {% for int in interrogazioni %}
+            <li><a href="#">{{ int.titolo }}</a></li>
+        {% endfor %}
    </ul>
 </div>
 

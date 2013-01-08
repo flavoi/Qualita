@@ -6,5 +6,8 @@ from django.contrib.auth.decorators import login_required
 # Renderizza la pagina iniziale
 @login_required
 def render_to_home(request):
-    contex = {}
+    interrogazioni = Interrogazione.objects.all()
+    contex = {
+        'interrogazioni':interrogazioni,
+    }
     return render_to_response('home.html', RequestContext(request, contex))
