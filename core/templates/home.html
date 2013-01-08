@@ -11,6 +11,7 @@
 
         #mainmenu a, #mainmenu a:visited {
             text-decoration: none;
+            color: black;
         }
 
         #mainmenu a:hover{
@@ -27,7 +28,10 @@
         <div id="mainmenu">
    <ul>
         {% for int in interrogazioni %}
-            <li><a href="#">{{ int.titolo }}</a></li>
+            <li>
+                <a href="#">{{ int.titolo }}</a>
+                <p class="description">{{ int.descrizione }}</p>
+            </li>
         {% endfor %}
    </ul>
 </div>
