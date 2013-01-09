@@ -3,12 +3,7 @@ from django.forms.fields import ChoiceField
 from django.forms.widgets import RadioSelect
 from models import *
 
-VALUTAZIONI_SCELTE = (
-    ('0', 'scarso'), 
-    ('1', 'insufficiente'), 
-    ('2', 'sufficiente'),
-    ('3', 'buono'),
-)
+VALUTAZIONI_SCELTE = get_valutazioni()
 
 class ValutazioniForm(ModelForm):
     rilevanza = ChoiceField(required=True,
@@ -21,4 +16,4 @@ class ValutazioniForm(ModelForm):
         widget=RadioSelect, choices=VALUTAZIONI_SCELTE)
     class Meta:
         model = Score
-        exclude = ('url',)
+        exclude = ('url', 'author')

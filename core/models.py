@@ -1,5 +1,6 @@
 from django.db import models
 from django.conf import settings
+from django.contrib.auth.models import User
 
 class URL(models.Model):
     indirizzo = models.URLField()
@@ -18,18 +19,23 @@ class Interrogazione(models.Model):
     def __unicode__(self):
         return u'%s' % (self.titolo)
 
-class Score(models.Model):
-    VALUTAZIONI_SCELTE = (
-        ('0', 'scarso'), 
-        ('1', 'insufficiente'), 
-        ('2', 'sufficiente'),
-        ('3', 'buono'),
+VALUTAZIONI_SCELTE = (
+        ('0', 'non classificabile'), 
+        ('1', 'scarso'), 
+        ('2', 'insufficiente'), 
+        ('3', 'sufficiente'),
+        ('4', 'buono'),
     )
+def get_valutazioni():
+    return VALUTAZIONI_SCELTE
+
+class Score(models.Model):
     rilevanza = models.CharField(max_length=2, choices=VALUTAZIONI_SCELTE)
     fonte = models.CharField(max_length=2, choices=VALUTAZIONI_SCELTE)
     leggibilita = models.CharField(max_length=2, choices=VALUTAZIONI_SCELTE)
     stile = models.CharField(max_length=2, choices=VALUTAZIONI_SCELTE)
     commento = models.TextField(blank=True)
-    url = models.ForeignKey(URL)
+    url = models.ForeignKey(URL, null=True, blank=True)
+    author = models.OneToOneField(User)
     def __unicode__(self):
         return u'%s' % (self.rilevanza)

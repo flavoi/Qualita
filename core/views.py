@@ -1,10 +1,11 @@
 # Create your views here.
-from django.shortcuts import render_to_response
+from django.shortcuts import render_to_response, get_object_or_404
 from django.http import HttpResponse
 from django.template import RequestContext
 from django.contrib.auth.decorators import login_required
 from models import *
 from forms import ValutazioniForm
+from django.db import IntegrityError
 
 # Renderizza la pagina iniziale
 @login_required
@@ -23,13 +24,22 @@ def render_to_home(request):
 @login_required
 def valutazioni(request, id_valutazione):
     if request.method == 'POST': 
-        url = URL.objects.get(id=id_valutazione)
+        url = get_object_or_404(URL, id=id_valutazione)
         form = ValutazioniForm(request.POST)
         if form.is_valid(): 
-            rilevanza = form.cleaned_data["rilevanza"]
-            return HttpResponse(rilevanza + "<br />" + str(url.indirizzo) + "<br />" + "<h1> Grazie per aver votato </h1>")
+            form = form.save(commit=False)
+            form.url = url
+            form.author = request.user
+            form.save() 
+            return HttpResponse("<h1 style='text-align:center;'> Grazie per aver votato </h1>")
     else:
-        form = ValutazioniForm()
+        form = ValutazioniForm(
+            initial = {
+            "rilevanza": "0",
+            "leggibilita": "0",
+            "fonte": "0",
+            "stile": "0",
+            })
         interrogazione = Interrogazione.objects.get(id=id_valutazione)
         url = interrogazione.url.all()[0] # test
     context = {

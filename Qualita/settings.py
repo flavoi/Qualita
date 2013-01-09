@@ -127,6 +127,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     # 'grappelli',
     'django.contrib.admin',
+    'south',
     'media',
     'core',
     'auth',
