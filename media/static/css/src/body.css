@@ -47,9 +47,11 @@ hr.style-eight:after {
 	color: white;
 }
 
-#tobar-buttons{
-    position:relative;
+#topbar-buttons {
     float:right;
+    font-size: 0.7em;
+    position:relative;
+    top:15px;
 }
 
 #botbar {
@@ -88,3 +90,18 @@ hr.style-eight:after {
     height: 0;
 }
 
+#mainmenu ul { 
+    list-style-image: url("https://help.github.com/assets/li-chevron-b3fe6cd1d468cc4b76c641be3166c03d.png"); 
+    font-size:18px; 
+}
+
+#mainmenu ul li { line-height:30px; }
+
+#mainmenu a, #mainmenu a:visited {
+    text-decoration: none;
+    color: black;
+}
+
+#mainmenu a:hover{
+    border-bottom:1px solid #dc4916;
+}

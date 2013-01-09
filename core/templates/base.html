@@ -13,17 +13,25 @@
 <link rel="stylesheet" href="{{ STATIC_URL }}css/base.css" />
 <link rel="shortcut icon" href="{{ STATIC_URL }}img/qualita-favicon.ico">
 
-{% block extrahead %}{% endblock %}
+<style type="text/css">
+    #home-link a{
+        text-decoration: none; 
+        color: white;
+    }
+</style>
+{% block extrahead %} {% endblock %}
 
 </head>
 <body>
 
 <div id="topbar">
     <div id="topbar-inside">
-        <span class="logo">Q</span>UALIT&Agrave;
+        <span id="home-link">
+            <a href="{% url 'home' %}"><span class="logo">Q</span>UALIT&Agrave;</a>
+        </span>
         {% block top-buttons %}
-            <div class="topbar-buttons">
-                <a class="button small square custom" href="{% url 'logout' %}">Logout</a>
+            <div id="topbar-buttons">
+                <a class="button small square custom" href="{% url 'logout' %}">Esci</a>
             </div>
         {% endblock %}
     </div>

@@ -38,4 +38,4 @@ class Score(models.Model):
     url = models.ForeignKey(URL, null=True, blank=True)
     author = models.OneToOneField(User)
     def __unicode__(self):
-        return u'%s' % (self.rilevanza)
+        return u'Rilevanza: %s' % (self.rilevanza)

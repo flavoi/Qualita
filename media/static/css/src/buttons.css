@@ -189,9 +189,3 @@
     color: #444; /* Remove this for a dark background */
 }
 
-.topbar-buttons {
-    float:right;
-    font-size: 0.7em;
-    position:relative;
-    top:15px;
-}
