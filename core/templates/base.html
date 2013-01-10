@@ -11,27 +11,25 @@
 </title>
 <link href='http://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" href="{{ STATIC_URL }}css/base.css" />
+<link rel="stylesheet" href="{{ STATIC_URL }}css/Font-Awesome/font-awesome.css">
+<!--[if IE 7]>
+  <link rel="stylesheet" href="{{ STATIC_URL }}css/Font-awesome/font-awesome-ie7.min.css">
+<![endif]-->
 <link rel="shortcut icon" href="{{ STATIC_URL }}img/qualita-favicon.ico">
 
-<style type="text/css">
-    #home-link a{
-        text-decoration: none; 
-        color: white;
-    }
-</style>
 {% block extrahead %} {% endblock %}
 
 </head>
 <body>
 
+
 <div id="topbar">
     <div id="topbar-inside">
-        <span id="home-link">
-            <a href="{% url 'home' %}"><span class="logo">Q</span>UALIT&Agrave;</a>
-        </span>
-        {% block top-buttons %}
-            <div id="topbar-buttons">
-                <a class="button small square custom" href="{% url 'logout' %}">Esci</a>
+        <a href="{% url 'home' %}"><span id="logo-head">Q</span><span id="logo-tail">UALIT&Agrave;</span></a>
+        {% block top-menu %}
+            <div id="topbar-menu">
+                <a class="btn" href="{% url 'logout' %}">
+                    <i class="icon-signout"></i> Esci</a>
             </div>
         {% endblock %}
     </div>

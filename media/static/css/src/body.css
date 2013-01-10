@@ -28,30 +28,31 @@ hr.style-eight:after {
 }
 
 #topbar {
-	text-align: left;
-	background: #dc4916;
-	position: relative;
-	zoom: 1;
-	width: 100% !important;
-	z-index: 6000;
-	box-shadow: 0 0 10px black;
-	padding: 10px 0 15px;
+    text-align: left;
+    background: #dc4916;
+    position: relative;
+    zoom: 1;
+    width: 100% !important;
+    z-index: 6000;
+    box-shadow: 0 0 10px black;
+    padding: 0 0 5px;
+}
+
+#topbar a {
+    text-decoration:none;
 }
 
 #topbar-inside {
-	width: 960px;
-	margin: 0 auto;
-	position: relative;
-	font-size: 1.5em;
-	font-weight: bold;
-	color: white;
+    width: 960px;
+    margin: 0 auto;
+    position: relative;
+    font-size: 1.5em;
 }
 
-#topbar-buttons {
-    float:right;
-    font-size: 0.7em;
-    position:relative;
-    top:15px;
+#topbar-menu {
+    float: right;
+    font-size: 18px;
+    margin-top: 15px;
 }
 
 #botbar {
@@ -59,6 +60,7 @@ hr.style-eight:after {
     width: 100% !important; 
     padding: 10px 0 15px;
     border-top: 1px solid #ebebeb;
+    margin-top: 10px;
 }
 
 #botbar-inside{
@@ -90,12 +92,20 @@ hr.style-eight:after {
     height: 0;
 }
 
-#mainmenu ul { 
-    list-style-image: url("https://help.github.com/assets/li-chevron-b3fe6cd1d468cc4b76c641be3166c03d.png"); 
-    font-size:18px; 
+#mainmenu dl { 
+    color: inherit;
+    text-rendering: optimizelegibility;
+    font-size:17.5px; 
 }
 
-#mainmenu ul li { line-height:30px; }
+#mainmenu dt{
+    font-weight: 500;
+}
+
+#mainmenu dd {
+    padding: 5px 0 0 15px;
+    margin: 0 0 1em 0;
+    line-height:20px; }
 
 #mainmenu a, #mainmenu a:visited {
     text-decoration: none;

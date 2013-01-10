@@ -16,4 +16,4 @@ class ValutazioniForm(ModelForm):
         widget=RadioSelect, choices=VALUTAZIONI_SCELTE)
     class Meta:
         model = Score
-        exclude = ('url', 'author')
+        exclude = ('url', 'author', 'commento')

@@ -3,19 +3,21 @@
 {% block title %} Home {% endblock %}
 
 {% block content %}
-    <h2 class="title">Interrogazioni</h2>
-    <hr class="style-eight" />
+    <div class="grid_12">
+        <h2 class="title">Interrogazioni</h2>
+    </div>
 
     <div class="grid_6 push_3">
     <div id="mainmenu">
-        <ul>
+        <dl class="icons">
             {% for int in interrogazioni %}
-                <li>
+                <dt>
+                    <i class="icon-arrow-right"></i> 
                     <a href="{% url 'valutazioni' int.id %}">{{ int.titolo }}</a>
-                    <p class="description">{{ int.descrizione }}</p>
-                </li>
+                </dt>
+                <dd><span class="description">{{ int.descrizione }}</span></dd>
             {% endfor %}
-        </ul>
+        </dl>
     </div>
     </div>
 {% endblock %}
