@@ -1,6 +1,7 @@
 # Create your views here.
 from django.shortcuts import render_to_response, get_object_or_404
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
+from django.core.urlresolvers import reverse
 from django.template import RequestContext
 from django.contrib.auth.decorators import login_required
 from models import *
@@ -22,16 +23,30 @@ def render_to_home(request):
                            altrimenti a interrogazione.id.
 """
 @login_required
-def valutazioni(request, id_valutazione):
+def valutazioni(request, id_interrogazione, current_url=None):
+    messaggio = None
+    interrogazione = Interrogazione.objects.get(id=id_interrogazione)                # Raccolta dati e paginazione
+    url_list = interrogazione.url.all()
+    paginator = Paginator(url_list, 1)
+    page = request.GET.get('page')
+    try:
+        url_list = paginator.page(page)
+    except PageNotAnInteger:
+        # Prima pagina
+        url_list = paginator.page(1)
+    except EmptyPage:
+        # Pagina out-of-range
+        url_list = paginator.page(paginator.num_pages) 
+
     if request.method == 'POST': 
-        url = get_object_or_404(URL, id=id_valutazione)
+        url = get_object_or_404(URL, id=current_url)
         form = ValutazioniForm(request.POST)
         if form.is_valid(): 
-            form = form.save(commit=False)
-            form.url = url
-            form.author = request.user
-            form.save() 
-            return HttpResponse("<h1 style='text-align:center;'> Grazie per aver votato </h1>")
+            valutazione = form.save(commit=False)
+            valutazione.url = url
+            valutazione.author = request.user
+            valutazione.save() 
+            messaggio = "Valutazione salvata con successo."
     else:
         form = ValutazioniForm(
             initial = {
@@ -39,25 +54,12 @@ def valutazioni(request, id_valutazione):
             "leggibilita": "0",
             "fonte": "0",
             "stile": "0",
-            })
-        interrogazione = Interrogazione.objects.get(id=id_valutazione)
-        url_list = interrogazione.url.all()
-        
-        # Supporto per paginazione
-        paginator = Paginator(url_list, 1)
-        page = request.GET.get('page')
-        try:
-            url = paginator.page(page)
-        except PageNotAnInteger:
-            # Prima pagina
-            url = paginator.page(1)
-        except EmptyPage:
-            # Pagina out-of-range
-            url = paginator.page(paginator.num_pages)
-            
+            })       
+
     context = {
-        'url':url,
-        'form':form,
-        'id_valutazione':id_valutazione,
+        'url_list': url_list,
+        'form': form,
+        'id_interrogazione': id_interrogazione,
+        'messaggio': messaggio,
     }
     return render_to_response('valutazioni.html', RequestContext(request, context))
