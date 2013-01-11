@@ -107,11 +107,11 @@ hr.style-eight:after {
     margin: 0 0 1em 0;
     line-height:20px; }
 
-#mainmenu a, #mainmenu a:visited {
+.qlink, .qlink:visited {
     text-decoration: none;
     color: black;
 }
 
-#mainmenu a:hover{
+.qlink:hover{
     border-bottom:1px solid #dc4916;
 }

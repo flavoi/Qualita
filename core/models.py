@@ -36,6 +36,6 @@ class Score(models.Model):
     stile = models.CharField(max_length=2, choices=VALUTAZIONI_SCELTE)
     commento = models.TextField(blank=True)
     url = models.ForeignKey(URL, null=True, blank=True)
-    author = models.OneToOneField(User)
+    author = models.ForeignKey(User)
     def __unicode__(self):
         return u'Rilevanza: %s' % (self.rilevanza)

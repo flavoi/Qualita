@@ -13,7 +13,7 @@
             {% for int in interrogazioni %}
                 <dt>
                     <i class="icon-arrow-right"></i> 
-                    <a href="{% url 'valutazioni' int.id %}">{{ int.titolo }}</a>
+                    <a class="qlink" href="{% url 'valutazioni' int.id %}">{{ int.titolo }}</a>
                 </dt>
                 <dd><span class="description">{{ int.descrizione }}</span></dd>
             {% endfor %}

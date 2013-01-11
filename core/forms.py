@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from django.forms import ModelForm
 from django.forms.fields import ChoiceField
 from django.forms.widgets import RadioSelect
@@ -9,7 +11,7 @@ class ValutazioniForm(ModelForm):
     rilevanza = ChoiceField(required=True,
         widget=RadioSelect, choices=VALUTAZIONI_SCELTE)
     leggibilita = ChoiceField(required=True,
-        widget=RadioSelect, choices=VALUTAZIONI_SCELTE)
+        widget=RadioSelect, choices=VALUTAZIONI_SCELTE, label="Leggibilità")
     fonte = ChoiceField(required=True,
         widget=RadioSelect, choices=VALUTAZIONI_SCELTE)
     stile = ChoiceField(required=True,

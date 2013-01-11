@@ -5,7 +5,7 @@ from django.template import RequestContext
 from django.contrib.auth.decorators import login_required
 from models import *
 from forms import ValutazioniForm
-from django.db import IntegrityError
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 # Renderizza la pagina iniziale
 @login_required
@@ -41,7 +41,20 @@ def valutazioni(request, id_valutazione):
             "stile": "0",
             })
         interrogazione = Interrogazione.objects.get(id=id_valutazione)
-        url = interrogazione.url.all()[0] # test
+        url_list = interrogazione.url.all()
+        
+        # Supporto per paginazione
+        paginator = Paginator(url_list, 1)
+        page = request.GET.get('page')
+        try:
+            url = paginator.page(page)
+        except PageNotAnInteger:
+            # Prima pagina
+            url = paginator.page(1)
+        except EmptyPage:
+            # Pagina out-of-range
+            url = paginator.page(paginator.num_pages)
+            
     context = {
         'url':url,
         'form':form,
