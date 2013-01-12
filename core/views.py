@@ -1,12 +1,16 @@
-# Create your views here.
+# Django assets
 from django.shortcuts import render_to_response, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.template import RequestContext
 from django.contrib.auth.decorators import login_required
+from django.forms.models import modelformset_factory
+from django.utils.functional import curry
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+
+# App assets
 from models import *
 from forms import ValutazioniForm
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 # Renderizza la pagina iniziale
 @login_required
@@ -19,47 +23,41 @@ def render_to_home(request):
 
 # Gestione valutazioni
 """
-    @param id_valutazione: in caso di richiesta POST corrisponde a url.id,
-                           altrimenti a interrogazione.id.
+    @param id_interrogazione: id Interrogazione corrente
+    @param current_url:       id URL corrente
 """
 @login_required
 def valutazioni(request, id_interrogazione, current_url=None):
-    messaggio = None
-    interrogazione = Interrogazione.objects.get(id=id_interrogazione)                # Raccolta dati e paginazione
-    url_list = interrogazione.url.all()
-    paginator = Paginator(url_list, 1)
-    page = request.GET.get('page')
-    try:
-        url_list = paginator.page(page)
-    except PageNotAnInteger:
-        # Prima pagina
-        url_list = paginator.page(1)
-    except EmptyPage:
-        # Pagina out-of-range
-        url_list = paginator.page(paginator.num_pages) 
-
+    ValutazioniFormSet = modelformset_factory(Score, form=ValutazioniForm, extra=1, max_num=1)
     if request.method == 'POST': 
         url = get_object_or_404(URL, id=current_url)
-        form = ValutazioniForm(request.POST)
-        if form.is_valid(): 
-            valutazione = form.save(commit=False)
-            valutazione.url = url
-            valutazione.author = request.user
-            valutazione.save() 
-            messaggio = "Valutazione salvata con successo."
+        formset = ValutazioniFormSet(request.POST, request.FILES) 
+        if formset.is_valid():
+            for form in formset:
+                form = form.save(commit=False)
+                form.url = url
+                form.author = request.user
+        formset.save()
+        return HttpResponse('Formset salvato con successo!') # Redirect provvisorio
     else:
-        form = ValutazioniForm(
-            initial = {
-            "rilevanza": "0",
-            "leggibilita": "0",
-            "fonte": "0",
-            "stile": "0",
-            })       
-
-    context = {
-        'url_list': url_list,
-        'form': form,
-        'id_interrogazione': id_interrogazione,
-        'messaggio': messaggio,
-    }
-    return render_to_response('valutazioni.html', RequestContext(request, context))
+        # Raccolta dati e paginazione
+        interrogazione = Interrogazione.objects.get(id=id_interrogazione)                
+        url_list = interrogazione.url.all()
+        paginator = Paginator(url_list, 1)
+        page = request.GET.get('page')
+        try:
+            url_list = paginator.page(page)
+        except PageNotAnInteger:
+            # Prima pagina
+            url_list = paginator.page(1)
+        except EmptyPage:
+            # Pagina out-of-range
+            url_list = paginator.page(paginator.num_pages) 
+        page_query = Score.objects.filter(id__in = [url.id for url in url_list])
+        formset = ValutazioniFormSet(queryset=page_query)
+        context = {
+            'url_list': url_list,
+            'formset': formset,
+            'id_interrogazione': id_interrogazione,
+        }
+        return render_to_response('valutazioni.html', RequestContext(request, context))

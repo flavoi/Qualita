@@ -6,6 +6,14 @@
     <div class="grid_12">
         <h2 class="title">Interrogazioni</h2>
     </div>
+    
+    {% if messaggio %}
+    <div class="grid_12">
+        <p class="alert alert-info">
+            <i class="icon-ok-sign"></i> {{ messaggio }}
+        </p>
+    </div>
+    {% endif %}
 
     <div class="grid_6 push_3">
     <div id="mainmenu">
