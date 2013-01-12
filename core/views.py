@@ -38,7 +38,8 @@ def valutazioni(request, id_interrogazione, current_url=None):
                 form.url = url
                 form.author = request.user
         formset.save()
-        return HttpResponse('Formset salvato con successo!') # Redirect provvisorio
+        request.session['msg_ok'] = "Voto inviato con successo!"
+        return HttpResponseRedirect(reverse("valutazioni", args=(id_interrogazione,)))
     else:
         # Raccolta dati e paginazione
         interrogazione = Interrogazione.objects.get(id=id_interrogazione)                
@@ -55,9 +56,15 @@ def valutazioni(request, id_interrogazione, current_url=None):
             url_list = paginator.page(paginator.num_pages) 
         page_query = Score.objects.filter(id__in = [url.id for url in url_list])
         formset = ValutazioniFormSet(queryset=page_query)
+
         context = {
             'url_list': url_list,
             'formset': formset,
             'id_interrogazione': id_interrogazione,
         }
+
+        if request.session.get('msg_ok'):
+            context['msg_ok'] = request.session.get('msg_ok')
+            del request.session['msg_ok']
+
         return render_to_response('valutazioni.html', RequestContext(request, context))
