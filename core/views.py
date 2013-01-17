@@ -7,6 +7,8 @@ from django.contrib.auth.decorators import login_required
 from django.forms.models import modelformset_factory
 from django.utils.functional import curry
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+# Gestione messaggi
+from django.contrib import messages
 
 # App assets
 from models import *
@@ -56,7 +58,7 @@ def valutazioni(request, id_interrogazione, current_url=None):
                 ids.append(form.id)
         formset.save()
         if formset.has_changed():
-            request.session['msg_ok'] = "Voto n. %s inviato con successo!" % ids 
+            messages.success(request, "Voto n. %s inviato con successo!" % ids )
         return HttpResponseRedirect(reverse("valutazioni", args=(id_interrogazione,)) + "?page=" + page)
     else:
         page_query = Score.objects.filter(id__in = [url.id for url in url_list])
@@ -66,8 +68,4 @@ def valutazioni(request, id_interrogazione, current_url=None):
             'formset': formset,
             'id_interrogazione': id_interrogazione,
         }
-        # Pulizia sessione
-        if request.session.get('msg_ok'):
-            context['msg_ok'] = request.session.get('msg_ok')
-            del request.session['msg_ok']
         return render_to_response('valutazioni.html', RequestContext(request, context))
