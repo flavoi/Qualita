@@ -1,6 +1,6 @@
 # Django settings for vita project.
 
-ABSOLUTE_PATH = '/Users/flavio/Dropbox/Works/Stars/Qualita/'
+ABSOLUTE_PATH = '/Users/flavio/Sites/Qualita/'
 LOGIN_REDIRECT_URL = '/'
 LOGIN_URL = '/login/'
 DEBUG = True
@@ -72,9 +72,6 @@ ADMIN_MEDIA_PREFIX = '/static/admin/'
 
 # Additional locations of static files
 STATICFILES_DIRS = (
-    # Put strings here, like "/home/html/static" or "C:/www/django/static".
-    # Always use forward slashes, even on Windows.
-    # Don't forget to use absolute paths, not relative paths.
 )
 
 

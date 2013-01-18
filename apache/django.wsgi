@@ -17,10 +17,9 @@ framework.
 import os 
 import sys
 
-sys.path.append('/Users/flavio/Dropbox/Works/Stars')
-sys.path.append('/Users/flavio/Dropbox/Works/Stars/Qualita')
+sys.path.append('/Users/flavio/Sites')
+sys.path.append('/Users/flavio/Sites/Qualita')
 
-os.environ['DJANGO_SETTINGS_MODULE'] = 'Qualita.settings'
-
-import django.core.handlers.wsgi
-application = django.core.handlers.wsgi.WSGIHandler()
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "Qualita.settings")
+from django.core.wsgi import get_wsgi_application
+application = get_wsgi_application()
