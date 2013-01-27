@@ -49,16 +49,14 @@ def valutazioni(request, id_interrogazione, current_url=None):
     if request.method == 'POST': 
         url = get_object_or_404(URL, id=current_url)
         formset = ValutazioniFormSet(request.POST, request.FILES) 
-        ids = []
         if formset.is_valid():
             for form in formset:
                 form = form.save(commit=False)
                 form.url = url
                 form.author = request.user
-                ids.append(form.id)
         formset.save()
         if formset.has_changed():
-            messages.success(request, "Voto n. %s inviato con successo!" % ids )
+            messages.success(request, "Voto n. %s inviato con successo!" % url.id )
         return HttpResponseRedirect(reverse("valutazioni", args=(id_interrogazione,)) + "?page=" + page)
     else:
         page_query = Score.objects.filter(id__in = [url.id for url in url_list])
