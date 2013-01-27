@@ -24,11 +24,9 @@ urlpatterns += patterns('auth',
     url(r'logout/$', 'views.logout_then_login', {'login_url':'login'}, name="logout"),
 )
 
-"""
 if settings.DEBUG == True:
     # Supporto a MEDIA_ROOT e JQUERY_ROOT (solo in sviluppo)
     urlpatterns += patterns('',
         url(r'^uploaded/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT,}),
         url(r'^js/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.STATIC_ROOT + 'js/',}),
     )
-"""

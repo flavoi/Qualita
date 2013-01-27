@@ -1,6 +1,10 @@
-# Django settings for vita project.
+import os
 
-ABSOLUTE_PATH = '/Users/flavio/Sites/Qualita/'
+here = lambda * x: os.path.join(os.path.abspath(os.path.dirname(__file__)), *x)
+PROJECT_ROOT = here("..")
+root = lambda * x: os.path.join(os.path.abspath(PROJECT_ROOT), *x)
+
+
 LOGIN_REDIRECT_URL = '/'
 LOGIN_URL = '/login/'
 DEBUG = True
@@ -14,12 +18,12 @@ MANAGERS = ADMINS
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': ABSOLUTE_PATH + 'qualita.db',                      # Or path to database file if using sqlite3.
-        'USER': '',                      # Not used with sqlite3.
-        'PASSWORD': '',                  # Not used with sqlite3.
-        'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
-        'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
+        'ENGINE': 'django.db.backends.sqlite3', 
+        'NAME': root('qualita.db'),                     
+        'USER': '',                      
+        'PASSWORD': '',                  
+        'HOST': '',                      
+        'PORT': '',                      
     }
 }
 
@@ -48,7 +52,7 @@ USE_TZ = True
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/home/media/media.lawrence.com/media/"
-MEDIA_ROOT = ABSOLUTE_PATH + 'media/uploaded/'
+MEDIA_ROOT = root('media/uploaded/')
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
@@ -59,7 +63,7 @@ MEDIA_URL = '/uploaded/'
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/home/media/media.lawrence.com/static/"
-STATIC_ROOT = ABSOLUTE_PATH + 'media/static/'
+STATIC_ROOT = root('media/static/')
 
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static/"
@@ -71,8 +75,7 @@ STATIC_URL = '/static/'
 ADMIN_MEDIA_PREFIX = '/static/admin/'
 
 # Additional locations of static files
-STATICFILES_DIRS = (
-)
+STATICFILES_DIRS = ()
 
 
 # List of finder classes that know how to find static files in
@@ -115,20 +118,27 @@ TEMPLATE_DIRS = (
     # Don't forget to use absolute paths, not relative paths.
 )
 
-INSTALLED_APPS = (
+DJANGO_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # 'grappelli',
     'django.contrib.admin',
+)
+
+THIRD_PARTY_APPS = (
     'south',
+)
+
+LOCAL_APPS = (
     'media',
     'core',
     'auth',
 )
+
+INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to

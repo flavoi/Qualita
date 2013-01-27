@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% load url from future %}
+{% load core_extras %}
+
+{% block title %} Valutazioni {% endblock %}
+
+{% block content %}
+
+{% ifequal url_list|length 0 %}
+    <div class="grid_12">
+        <p class="alert alert-info">
+            <i class="icon-info-sign"></i> Nessuna valutazione disponibile.
+        </p>
+    </div>
+{% else %}
+    {% for url in url_list %}
+        <div class="grid_12">
+            <a style="text-decoration:none" target="_blank" href="{{ url }}"><h2 class="title"><i class="icon-link"></i> {{ url|decode }}</h2></a>
+        </div>
+    
+        <form action="{% url 'votazioni' id_interrogazione url.pk %}?page={% if url_list.has_next %}{{ url_list.next_page_number }}{% else %}{{ url_list.number }}{% endif %}" method="POST">{% csrf_token %}
+            {{ formset.management_form }}
+            {% for form in formset.forms %}
+                {% for hidden in form.hidden_fields %}
+                    {{ hidden }}
+                {% endfor %}
+                {% for field in form.visible_fields %}
+                    <div class="grid_3">
+                        <h2>{{ field.label_tag }}</h2>
+                        {{ field }}
+                        {% if field.errors %}
+                            <label>
+                                <div class="errormsg">{{ field.errors }}</div> 
+                            </label>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            {% endfor %}
+            <div class="clear"></div>
+            <div class="grid_2" style="margin-top: 15px;">
+                <input type="submit" class="btn" value="Conferma Voto" />
+            </div>
+        </form> 
+
+        <div class="clear"></div>
+    {% endfor %}
+
+    <div class="grid_4 push_4">
+        <div class="pagination">
+            <span class="step-links">
+            {% if url_list.has_previous %}
+                <a class="qlink" href="?page={{ url_list.previous_page_number }}">precedente</a> <i class=" icon-arrow-left"></i>
+            {% endif %}
+            <span class="current">
+                pagina {{ url_list.number }} di {{ url_list.paginator.num_pages }}
+            </span>
+            {% if url_list.has_next %}
+                <i class="icon-arrow-right"></i> <a class="qlink" href="?page={{ url_list.next_page_number }}">successivo</a>
+            {% endif %}
+            </span>
+        </div>
+    </div>
+
+    <div class="clear"></div>
+
+{% endifequal %}
+{% endblock %}
