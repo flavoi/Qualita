@@ -59,7 +59,7 @@ def valutazioni(request, id_interrogazione, current_url=None):
             messages.success(request, "Voto n. %s inviato con successo!" % url.id )
         return HttpResponseRedirect(reverse("valutazioni", args=(id_interrogazione,)) + "?page=" + page)
     else:
-        page_query = Score.objects.filter(id__in = [url.id for url in url_list])
+        page_query = Score.objects.filter(url__in = [url.id for url in url_list]).filter(author=request.user)
         formset = ValutazioniFormSet(queryset=page_query)
         context = {
             'url_list': url_list,
