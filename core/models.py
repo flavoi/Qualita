@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 
 class URL(models.Model):
     indirizzo = models.URLField()
-    percorso_su_disco = models.FilePathField(path=settings.MEDIA_ROOT)
+    percorso_su_disco = models.FilePathField(path=settings.MEDIA_ROOT, blank=True)
     class Meta:
         verbose_name_plural = "URL"
     def __unicode__(self):

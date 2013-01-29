@@ -30,6 +30,7 @@ def login(request, template_name='registration/login.html',
     Displays the login form and handles the login action.
     """
     redirect_to = request.REQUEST.get(redirect_field_name, '')
+    error_message = False
 
     if request.method == "POST":
         form = authentication_form(data=request.POST)
@@ -45,6 +46,9 @@ def login(request, template_name='registration/login.html',
                 request.session.delete_test_cookie()
 
             return HttpResponseRedirect(redirect_to)
+
+        # Authentication error flag
+        error_message = True
     else:
         form = authentication_form(request)
 
@@ -57,6 +61,7 @@ def login(request, template_name='registration/login.html',
         redirect_field_name: redirect_to,
         'site': current_site,
         'site_name': current_site.name,
+        'error_message': error_message,
     }
     if extra_context is not None:
         context.update(extra_context)
