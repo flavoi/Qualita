@@ -37,3 +37,21 @@ h2.title {
     font-weight: 300;
     color: #999;
 }
+
+.qlink, .qlink:visited {
+    text-decoration: none;
+    color: black;
+}
+
+.qlink:hover{
+    border-bottom:1px solid #dc4916;
+}
+
+.llink, .llink:visited {
+    text-decoration: none;
+    color:#777;
+}
+
+.llink:hover{
+    border-bottom: none;
+}

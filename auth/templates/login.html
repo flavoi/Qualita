@@ -3,45 +3,7 @@
 
 {% block sitecss %} {% endblock %}
 {% block extrahead %}
-
-<style type="text/css">
-    #login-wrapper #login-top {
-        width: 100%;
-        padding: 140px 0 50px 0;
-        text-align: center;
-    }
-
-    #topbar {
-        text-align: left;
-        background: #dc4916;
-        position: relative;
-        zoom: 1;
-        width: 100% !important;
-        z-index: 6000;
-        box-shadow: 0 0 10px black;
-        padding: 140px 0 50px 0;
-        text-align: center;
-    }
-
-    #topbar-inside {
-        width: 960px;
-        margin: 0 auto;
-        position: relative;
-        font-size: 1.5em;
-        font-weight: bold;
-        color: white;
-        text-align: center;
-    }
-
-    #brand {
-        font-family: 'Ubuntu', sans-serif;
-        color: white;
-        text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
-        font-size: 1.5em;
-        font-weight: 200;
-        text-decoration: none;
-    }
-</style>
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/src/login.css">
 {% endblock %}
 
 {% block title %}Login{% endblock %}
@@ -49,7 +11,7 @@
 {% block top-menu %}{% endblock %}
 
 {% block content %}	
-<div class="grid_6 push_3">
+<div class="grid_6">
     <div class="signin-box">
         <form action="{% url 'login' %}" method="POST" id="login-form">{% csrf_token %}
             <label>
@@ -67,13 +29,31 @@
             {% endif %}
             <input type="submit" class="btn" value="Accedi" />
             <label>
-                <p>Accedi con la mail istituzionale (pippo.pluto@studenti.unipd.it).</p>
+                <p>Accedi con la mail istituzionale: (pippo.pluto@studenti.unipd.it).</p>
             </label>
         </form>
     </div>
 </div>
 
+<div class="grid_6">
+    <h1 class="req">Prerequisiti</h1>
+    <div class="description">
+    <ul class="icons">
+        <li><i class="icon-ok"></i>Conoscere il proprio browser web</li>
+        <li><i class="icon-ok"></i>Prendere visione della descrizione del progetto</li>
+        <li><i class="icon-ok"></i>Accettare i termini di servizio</li>
+    </ul>
+    </div>
+    <h1 class="req">Risorse</h1>
+    <div class="description">
+    <ul class="icons">
+        <li><i class="icon-link"></i><a target="_blank" class="llink" href="http://www.20thingsilearned.com/it-IT/home">20 cose che ho imparato sui browser e sul Web</a></li>
+        <li><i class="icon-link"></i><a target="_blank" class="llink" href="http://www.whatbrowser.org/intl/it/">Il mio browser</a></li>
+    </ul>
+    </div>
+</div>
 <div class="clear"></div>
+
 {% endblock %}
 
 {% block footer %}{% endblock %}
