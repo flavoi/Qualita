@@ -1,9 +1,9 @@
 import os
+import dj_database_url
 
 here = lambda * x: os.path.join(os.path.abspath(os.path.dirname(__file__)), *x)
 PROJECT_ROOT = here("..")
 root = lambda * x: os.path.join(os.path.abspath(PROJECT_ROOT), *x)
-
 
 LOGIN_REDIRECT_URL = '/'
 LOGIN_URL = '/login/'
@@ -18,14 +18,17 @@ MANAGERS = ADMINS
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3', 
-        'NAME': root('qualita.db'),                     
-        'USER': '',                      
-        'PASSWORD': '',                  
-        'HOST': '',                      
-        'PORT': '',                      
+        'ENGINE': 'django.db.backends.postgresql_psycopg2', 
+        'NAME': 'qualita',                          
+        'USER': 'vagrant',                                      
+        'PASSWORD': 'latest0',                                  
+        'HOST': '',                                      
+        'PORT': '',                                  
     }
-}
+} 
+
+# Parse database configuration from $DATABASE_URL
+# DATABASES['default'] =  dj_database_url.config()
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
