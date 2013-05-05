@@ -28,7 +28,7 @@ DATABASES = {
 } 
 
 # Parse database configuration from $DATABASE_URL
-DATABASES['default'] =  dj_database_url.config()
+# DATABASES['default'] =  dj_database_url.config()
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -61,6 +61,7 @@ MEDIA_ROOT = root('media/uploaded/')
 # trailing slash.
 # Examples: "http://media.lawrence.com/media/", "http://example.com/media/"
 MEDIA_URL = '/uploaded/'
+ALLOWED_INCLUDE_ROOTS = (MEDIA_ROOT,MEDIA_URL)
 
 # Absolute path to the directory static files should be collected to.
 # Don't put anything in this directory yourself; store your static files
