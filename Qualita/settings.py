@@ -61,7 +61,7 @@ MEDIA_ROOT = root('media/uploaded/')
 # trailing slash.
 # Examples: "http://media.lawrence.com/media/", "http://example.com/media/"
 MEDIA_URL = '/uploaded/'
-ALLOWED_INCLUDE_ROOTS = (MEDIA_ROOT,MEDIA_URL)
+ALLOWED_INCLUDE_ROOTS = (MEDIA_ROOT, MEDIA_URL)
 
 # Absolute path to the directory static files should be collected to.
 # Don't put anything in this directory yourself; store your static files

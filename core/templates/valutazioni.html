@@ -43,31 +43,33 @@
         </form> 
 
         <div class="clear"></div>
-    {% endfor %}
 
-    <div class="grid_4 push_4">
-        <div class="pagination">
-            <span class="step-links">
-            {% if url_list.has_previous %}
-                <a class="qlink" href="?page={{ url_list.previous_page_number }}">precedente</a> <i class=" icon-arrow-left"></i>
-            {% endif %}
-            <span class="current">
-                pagina {{ url_list.number }} di {{ url_list.paginator.num_pages }}
-            </span>
-            {% if url_list.has_next %}
-                <i class="icon-arrow-right"></i> <a class="qlink" href="?page={{ url_list.next_page_number }}">successivo</a>
-            {% endif %}
-            </span>
+        <div class="grid_4 push_4">
+            <div class="pagination">
+                <span class="step-links">
+                {% if url_list.has_previous %}
+                    <a class="qlink" href="?page={{ url_list.previous_page_number }}">precedente</a> <i class=" icon-arrow-left"></i>
+                {% endif %}
+                <span class="current">
+                    pagina {{ url_list.number }} di {{ url_list.paginator.num_pages }}
+                </span>
+                {% if url_list.has_next %}
+                    <i class="icon-arrow-right"></i> <a class="qlink" href="?page={{ url_list.next_page_number }}">successivo</a>
+                {% endif %}
+                </span>
+            </div>
         </div>
-    </div>
 
-    <div class="clear"></div>
+        <div class="clear"></div>
 
-    <!-- Pagina da valutare -->
-    <div class="grid_12">
-        <iframe src="{{ MEDIA_URL }}python.html" height="100%" width="100%"></iframe>
-    </div>
+        <div class="grid_12">
+            <hr class="style-eight" />
+        </div>
+        <div class="grid_12">
+            <iframe src="{{ MEDIA_URL }}{{ url.get_percorso }}" frameborder="0" style="overflow:hidden;height:100%;width:100%"></iframe>
+        </div>
 
+    {% endfor %}
 
 {% endifequal %}
 {% endblock %}

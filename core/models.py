@@ -4,11 +4,13 @@ from django.contrib.auth.models import User
 
 class URL(models.Model):
     indirizzo = models.URLField()
-    percorso_su_disco = models.FilePathField(path=settings.MEDIA_ROOT, blank=True)
+    percorso_su_disco = models.FileField(upload_to=settings.MEDIA_ROOT, blank=True)
     class Meta:
         verbose_name_plural = "URL"
     def __unicode__(self):
         return u'%s' % (self.indirizzo)
+    def get_percorso(self):
+        return self.percorso_su_disco.path[len(settings.MEDIA_ROOT):]
 
 class Interrogazione(models.Model):
     titolo = models.CharField(max_length=50)

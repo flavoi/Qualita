@@ -7,7 +7,8 @@
 
 * { margin: 0; padding: 0; }
 html { overflow-x: hidden; }
-       
+html, body { height: 100% }
+
 hr.style-eight {
     margin-top: 1.8em;
     padding: 0;
