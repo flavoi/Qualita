@@ -28,7 +28,7 @@ DATABASES = {
 } 
 
 # Parse database configuration from $DATABASE_URL
-DATABASES['default'] =  dj_database_url.config()
+# DATABASES['default'] =  dj_database_url.config()
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -122,6 +122,21 @@ TEMPLATE_DIRS = (
     # Don't forget to use absolute paths, not relative paths.
 )
 
+# Amazon S3 Support
+DEFAULT_FILE_STORAGE = 's3_folder_storage.s3.DefaultStorage'
+DEFAULT_S3_PATH = "media"
+STATICFILES_STORAGE = 's3_folder_storage.s3.StaticStorage'
+STATIC_S3_PATH = "static"
+AWS_ACCESS_KEY_ID = "AKIAI7JJVSA4PR37C6HA"
+AWS_SECRET_ACCESS_KEY = "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"
+AWS_STORAGE_BUCKET_NAME = "qualita-dei-assets"
+
+MEDIA_ROOT = '/%s/' % DEFAULT_S3_PATH
+MEDIA_URL = '//s3.amazonaws.com/%s/media/' % AWS_STORAGE_BUCKET_NAME
+STATIC_ROOT = "/%s/" % STATIC_S3_PATH
+STATIC_URL = '//s3.amazonaws.com/%s/static/' % AWS_STORAGE_BUCKET_NAME
+ADMIN_MEDIA_PREFIX = STATIC_URL + 'admin/'
+
 DJANGO_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -134,10 +149,11 @@ DJANGO_APPS = (
 
 THIRD_PARTY_APPS = (
     'south',
+    'storages',
+    's3_folder_storage',
 )
 
 LOCAL_APPS = (
-    'media',
     'core',
     'auth',
 )

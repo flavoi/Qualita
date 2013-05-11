@@ -1,5 +1,4 @@
 {% extends 'base.html' %}
-{% load url from future %}
 {% load core_extras %}
 
 {% block title %} Valutazioni {% endblock %}
@@ -66,7 +65,11 @@
             <hr class="style-eight" />
         </div>
         <div class="grid_12">
-            <iframe src="{{ MEDIA_URL }}{{ url.get_percorso }}" frameborder="0" style="overflow:hidden;height:100%;width:100%"></iframe>
+            {% if url.percorso_su_disco %}
+                <iframe src="{{ MEDIA_URL }}{{ url.get_percorso }}" frameborder="0" style="overflow:hidden;height:100%;width:100%"></iframe>
+            {% else%}
+                <iframe src="{{ url }}" frameborder="0" style="overflow:hidden;height:100%;width:100%"></iframe>
+            {% endif %}
         </div>
 
     {% endfor %}
