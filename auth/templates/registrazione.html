@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}Registrazione{% endblock %}
+
+{% block top-menu %}{% endblock %}
+
+{% block content %}
+    <div class="grid_6 prefix_3">
+        <div class="signin-box">
+            <form action="{% url 'registrazione' %}" method="POST">{% csrf_token %}
+                {% for field in form %}
+                    <label>
+                        {{ field.label }}
+                        {{ field }}
+                    </label>
+                {% endfor %}
+                {% if form_error %}
+                    <label>
+                        <p class="errormsg">C'&egrave; stato un problema durante la tua registrazione.</p> 
+                    </label>
+                {% endif %}
+                <input type="submit" class="btn" value="Registrati" />
+            </form>
+        </div>
+    </div>
+{% endblock %}

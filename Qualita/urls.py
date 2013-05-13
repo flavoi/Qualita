@@ -1,5 +1,6 @@
 from django.conf.urls import patterns, include, url
 from django.conf import settings
+from emailusernames.forms import EmailAuthenticationForm
 
 # Attivazione Admin
 from django.contrib import admin
@@ -8,6 +9,8 @@ admin.autodiscover()
 # Generale
 urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^login/$', 'django.contrib.auth.views.login', {'template_name':'login.html', 'authentication_form': EmailAuthenticationForm}, name="login"),
+    url(r'^logout/$', 'django.contrib.auth.views.logout', {'next_page': '/login'}, name="logout"),
 )
 
 # App core
@@ -19,8 +22,7 @@ urlpatterns += patterns('core',
 
 # App auth
 urlpatterns += patterns('auth',
-    url(r'login/$', 'views.login', {'template_name':'login.html'}, name="login"),
-    url(r'logout/$', 'views.logout_then_login', {'login_url':'login'}, name="logout"),
+    url(r'^registrazione/$', 'views.registrazione', name="registrazione"),
 )
 
 if settings.DEBUG == True:

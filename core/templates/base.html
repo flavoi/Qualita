@@ -11,10 +11,7 @@
 
 <link href='http://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" href="{{ STATIC_URL }}css/base.css" />
-<link rel="stylesheet" href="{{ STATIC_URL }}css/Font-awesome/font-awesome.css">
-<!--[if IE 7]>
-  <link rel="stylesheet" href="{{ STATIC_URL }}css/Font-awesome/font-awesome-ie7.min.css">
-<![endif]-->
+<link href="//netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.css" rel="stylesheet">
 <style type="text/css">
     
     #container
@@ -42,7 +39,7 @@ $(document).ready(function()
 
 <div id="topbar">
     <div id="topbar-inside">
-        <a href="{% url 'home' %}"><span id="logo-head">Q</span><span id="logo-tail">UALIT&Agrave;</span></a>
+        <a href="{% url 'home' %}"><span id="logo-head">P</span><span id="logo-tail">rogetto</span> <span id="logo-head">Q</span><span id="logo-tail">UALIT&Agrave;</span></a>
         {% block top-menu %}
             <div id="topbar-menu">
                 <a class="btn" href="{% url 'logout' %}">
@@ -157,6 +154,7 @@ $(document).ready(function()
     <div class="grid_12">
         <p class="alert alert-{{ message.tags }}">
             {% ifequal message.tags 'success' %} <i class="icon-ok"></i>{% endifequal %}
+            {% ifequal message.tags 'info' %} <i class="icon-info-sign"></i>{% endifequal %}
             {{ message }}
         </p>
     </div>

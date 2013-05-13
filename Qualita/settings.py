@@ -28,7 +28,7 @@ DATABASES = {
 } 
 
 # Parse database configuration from $DATABASE_URL
-DATABASES['default'] =  dj_database_url.config()
+# DATABASES['default'] =  dj_database_url.config()
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -110,8 +110,12 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
+AUTHENTICATION_BACKENDS = (
+    'emailusernames.backends.EmailAuthBackend',
+    # 'django.contrib.auth.backends.ModelBackend',
+)
+
 ROOT_URLCONF = 'Qualita.urls'
-GRAPPELLI_ADMIN_TITLE = 'Progetto Qualita: Admin'
 
 # Python dotted path to the WSGI application used by Django's runserver.
 WSGI_APPLICATION = 'Qualita.wsgi.application'
@@ -151,6 +155,7 @@ THIRD_PARTY_APPS = (
     'south',
     'storages',
     's3_folder_storage',
+    'emailusernames',
 )
 
 LOCAL_APPS = (

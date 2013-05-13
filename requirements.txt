@@ -3,6 +3,7 @@ South==0.7.6
 argparse==1.2.1
 boto==2.9.2
 dj-database-url==0.2.1
+django-email-as-username==1.6.5
 django-extensions==1.1.1
 django-s3-folder-storage==0.1
 django-storages==1.1.8

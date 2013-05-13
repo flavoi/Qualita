@@ -7,6 +7,7 @@ from django.contrib.auth.decorators import login_required
 from django.forms.models import modelformset_factory
 from django.utils.functional import curry
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+
 # Gestione messaggi
 from django.contrib import messages
 
