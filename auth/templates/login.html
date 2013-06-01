@@ -14,7 +14,7 @@
     <div class="signin-box">
         <form action="{% url 'login' %}" method="POST" id="login-form">{% csrf_token %}
             <label>
-                <strong class="email-label">Username</strong>
+                <strong class="email-label">Email</strong>
                 <input {% if form.errors %}class="form-error"{% endif %} type="text" name="email" />
             </label>
             <label>
