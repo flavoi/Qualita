@@ -18,22 +18,51 @@
         <div class="grid_12">
             <a style="text-decoration:none" target="_blank" href="{{ url }}"><h2 class="title"><i class="icon-link"></i> {{ url|decode }}</h2></a>
         </div>
-    
-        <form action="{% url 'votazioni' id_interrogazione url.pk %}?page={% if url_list.has_next %}{{ url_list.next_page_number }}{% else %}{{ url_list.number }}{% endif %}" method="POST">{% csrf_token %}
+        
+        <div class="grid_10 push_1">    
+            <div class="description">
+                <p>
+                    Quali sono la rilevanza e la qualità della pagina web presentata qui 
+                    sotto, rispetto all'interrogazione da voi scelta ({{ interrogazione }})? 
+                    Esprimete le vostre valutazioni inserendo un voto da 1 (pessimo)
+                     a 10 (ottimo) per ciascun punto presente nella lista.
+                <p>
+                
+                <br />
+
+                </p>
+
+                    <i class="icon-comment"></i> Una volta terminata la valutazione di questa pagina,
+                    ricordatevi di cliccare su 'Conferma Voto' per inserire i vostri
+                    voti; cliccate invece su 'Successivo' se desiderate valutare
+                    un'altra pagina senza inserire i vostri voti per questa.
+                </p>
+                
+                <br />
+
+                <p>
+                    <i class="icon-comment"></i> In caso di ripensamenti, potrete sempre modificare le vostre
+                    valutazioni ritornando sui vostri passi.
+                </p>
+            </div>
+
+        <form action="{% url 'votazioni' interrogazione.pk url.pk %}?page={% if url_list.has_next %}{{ url_list.next_page_number }}{% else %}{{ url_list.number }}{% endif %}" method="POST">{% csrf_token %}
             {{ formset.management_form }}
             {% for form in formset.forms %}
                 {% for hidden in form.hidden_fields %}
                     {{ hidden }}
                 {% endfor %}
                 {% for field in form.visible_fields %}
-                    <div class="grid_3">
-                        <h2>{{ field.label_tag }}</h2>
-                        {{ field }}
-                        {% if field.errors %}
-                            <label>
-                                <div class="errormsg">{{ field.errors }}</div> 
-                            </label>
-                        {% endif %}
+                    <div class="grid_2">
+                        <div class="survey-item">
+                            <h2>{{ field.label_tag }}</h2>
+                            {{ field }}
+                            {% if field.errors %}
+                                <label>
+                                    <div class="errormsg">{{ field.errors }}</div> 
+                                </label>
+                            {% endif %}
+                        </div>
                     </div>
                 {% endfor %}
             {% endfor %}
@@ -42,6 +71,7 @@
                 <input type="submit" class="btn" value="Conferma Voto" />
             </div>
         </form> 
+        </div>
 
         <div class="clear"></div>
 

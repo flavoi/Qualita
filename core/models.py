@@ -22,11 +22,17 @@ class Interrogazione(models.Model):
         return u'%s' % (self.titolo)
 
 VALUTAZIONI_SCELTE = (
-        ('0', 'non classificabile'), 
-        ('1', 'scarso'), 
-        ('2', 'insufficiente'), 
-        ('3', 'sufficiente'),
-        ('4', 'buono'),
+        ('0', '0'), 
+        ('1', '1'), 
+        ('2', '2'), 
+        ('3', '3'),
+        ('4', '4'),
+        ('5', '5'),
+        ('6', '6'),
+        ('7', '7'),
+        ('8', '8'),
+        ('9', '9'),
+        ('10', '10'),
     )
 def get_valutazioni():
     return VALUTAZIONI_SCELTE

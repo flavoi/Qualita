@@ -61,10 +61,12 @@ def valutazioni(request, id_interrogazione, current_url=None):
         return HttpResponseRedirect(reverse("valutazioni", args=(id_interrogazione,)) + "?page=" + page)
     else:
         page_query = Score.objects.filter(url__in = [url.id for url in url_list]).filter(author=request.user)
+        interrogazione = Interrogazione.objects.get(id=id_interrogazione)
         formset = ValutazioniFormSet(queryset=page_query)
         context = {
             'url_list': url_list,
             'formset': formset,
             'id_interrogazione': id_interrogazione,
+            'interrogazione': interrogazione,
         }
         return render_to_response('valutazioni.html', RequestContext(request, context))

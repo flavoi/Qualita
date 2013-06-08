@@ -1,0 +1,58 @@
+
+/*
+    ==============================
+    Tipografia - Progetto Qualità
+    ==============================
+*/
+
+body { font-family: 'Ubuntu', sans-serif; }
+
+.description{
+    margin-left: 20px;
+    padding-bottom:5px;
+    color:#777;
+    text-align: justify;
+}
+
+#logo-head{
+    font-style:italic;
+    color: black; 
+    font-size:2.0em;
+}
+
+#logo-tail{
+    color: white;
+}
+
+h2.title {
+    padding-bottom: 9px;
+    margin: 20px 0 30px;
+    border-bottom: 1px solid #EEE;
+    display: block;
+    -webkit-margin-before: 0.83em;
+    -webkit-margin-after: 0.83em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+    text-align: center;
+    font-size: 36px;
+    font-weight: 300;
+    color: #999;
+}
+
+.qlink, .qlink:visited {
+    text-decoration: none;
+    color: black;
+}
+
+.qlink:hover{
+    border-bottom:1px solid #dc4916;
+}
+
+.llink, .llink:visited {
+    text-decoration: none;
+    color:#777;
+}
+
+.llink:hover{
+    border-bottom: none;
+}

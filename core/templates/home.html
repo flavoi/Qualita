@@ -7,17 +7,28 @@
         <h2 class="title">Interrogazioni</h2>
     </div>
 
-    <div class="grid_6 push_3">
-    <div id="mainmenu">
-        <dl class="icons">
-            {% for int in interrogazioni %}
-                <dt>
-                    <i class="icon-arrow-right"></i> 
-                    <a class="qlink" href="{% url 'valutazioni' int.id %}">{{ int.titolo }}</a>
-                </dt>
-                <dd><span class="description">{{ int.descrizione }}</span></dd>
-            {% endfor %}
-        </dl>
+    <div class="grid_10 push_1">
+        <div class="description">
+            <p>
+                Qui sotto trovate una lista di interrogazioni: pensatele come
+                interrogazioni da sottomettere ad un motore di ricerca. Scegliete
+                quella che vi interessa di più cliccandoci sopra. Tenete presente
+                che in seguito vi sarà sempre consentito sceglierne anche altre.
+            </p>
+        </div>
     </div>
+    
+    <div class="grid_6 push_3">
+        <div id="mainmenu">
+            <dl class="icons">
+                {% for int in interrogazioni %}
+                    <dt>
+                        <i class="icon-arrow-right"></i> 
+                        <a class="qlink" href="{% url 'valutazioni' int.id %}">{{ int.titolo }}</a>
+                    </dt>
+                    <dd><span class="description">{{ int.descrizione }}</span></dd>
+                {% endfor %}
+            </dl>
+        </div>
     </div>
 {% endblock %}

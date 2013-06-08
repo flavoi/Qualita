@@ -1,0 +1,119 @@
+
+/*
+	=======================================
+	Struttura del Corpo - Progetto Qualità
+	=======================================
+*/
+
+* { margin: 0; padding: 0; }
+html { overflow-x: hidden; }
+html, body, { height: 100%; }
+
+hr.style-eight {
+    margin-top: 1.8em;
+    padding: 0;
+    border: none;
+    border-top: medium double #333;
+    color: #333;
+    text-align: center;
+}
+
+hr.style-eight:after {
+    content: "\00a7";
+    display: inline-block;
+    position: relative; 
+    top: -0.7em;  
+    font-size: 1.5em;
+    padding: 0 0.25em;
+    background: white;
+}
+
+#topbar {
+    text-align: left;
+    background: #dc4916;
+    position: relative;
+    zoom: 1;
+    width: 100% !important;
+    z-index: 6000;
+    box-shadow: 0 0 10px black;
+    padding: 0 0 5px;
+}
+
+#topbar a {
+    text-decoration:none;
+}
+
+#topbar-inside {
+    width: 960px;
+    margin: 0 auto;
+    position: relative;
+    font-size: 1.5em;
+}
+
+#topbar-menu {
+    float: right;
+    font-size: 18px;
+    margin-top: 15px;
+}
+
+#botbar {
+    height: 35px;  
+    width: 100% !important; 
+    padding: 10px 0 15px;
+    border-top: 1px solid #ebebeb;
+    margin-top: 10px;
+}
+
+#botbar-inside{
+    width: 960px;
+    margin-top:5px;
+    position: relative;
+    font-size: .95em;  
+    white-space: nowrap;  
+    line-height: 0;
+}
+
+#botbar ul {  
+    color: #999;  
+    float: left;  
+    max-width: 80%;
+}
+
+#botbar ul li {  
+    display: inline;  
+    padding: 0 1.5em 0 0;
+}
+
+.clearfix:after {  
+    visibility: hidden;  
+    display: block;  
+    font-size: 0;  
+    content: '.';  
+    clear: both;  
+    height: 0;
+}
+
+#mainmenu {
+    margin-top: 20px;
+}
+
+#mainmenu dl { 
+    color: inherit;
+    text-rendering: optimizelegibility;
+    font-size:17.5px; 
+}
+
+#mainmenu dt{
+    font-weight: 500;
+}
+
+#mainmenu dd {
+    padding: 5px 0 0 15px;
+    margin: 0 0 1em 0;
+    line-height:20px; 
+}
+
+.survey-item {
+    margin-top: 20px;
+}
+
