@@ -108,9 +108,9 @@
         </div>
         <div class="grid_12" style="height:100%;">
             {% if url.percorso_su_disco %}
-                <iframe src="{{ MEDIA_URL }}{{ url.get_percorso }}" style="overflow:hidden;height:100%;width:100%" height="100%" width="100%"></iframe>
-            {% else%}
-                <iframe src="{{ url }}" frameborder="0" style="overflow:hidden;height:150%;width:100%" height="150%" width="100%"></iframe>
+                <iframe id="qualita-frame" name="qualita-frame" src="{{ MEDIA_URL }}{{ url.get_percorso }}" style="overflow:hidden;height:100%;width:100%" height="100%" width="100%"></iframe>
+            {% else %}
+                <iframe id="qualita-frame" name="qualita-frame" src="{{ url }}" frameborder="0" style="overflow:hidden; height:200%; width:100%" height="200%" width="100%"></iframe>
             {% endif %}
         </div>
 
