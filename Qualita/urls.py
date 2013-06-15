@@ -15,9 +15,9 @@ urlpatterns = patterns('',
 
 # App core
 urlpatterns += patterns('core',
-    url(r'^$', 'views.render_to_home', name="home"),
-    url(r'^valutazioni/interrogazione(?P<id_interrogazione>\d{1,10})/$', 'views.valutazioni', name="valutazioni"),
-    url(r'^valutazioni/interrogazione(?P<id_interrogazione>\d{1,10})/url(?P<current_url>\d{1,10})$', 'views.valutazioni', name="votazioni"),
+    url(r'^$', 'views.get_interrogazioni', name="home"),
+    url(r'^valutazioni/interrogazione(?P<id_interrogazione>\d{1,10})/$', 'views.get_valutazioni', name="valutazioni"),
+    url(r'^valutazioni/interrogazione(?P<id_interrogazione>\d{1,10})/url(?P<current_url>\d{1,10})$', 'views.get_valutazioni', name="votazioni"),
 )
 
 # App auth
@@ -25,9 +25,8 @@ urlpatterns += patterns('auth',
     url(r'^registrazione/$', 'views.registrazione', name="registrazione"),
 )
 
-if settings.DEBUG == True:
-    # Supporto a MEDIA_ROOT e JQUERY_ROOT (solo in sviluppo)
-    urlpatterns += patterns('',
-        url(r'^uploaded/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT,}),
-        url(r'^js/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.STATIC_ROOT + 'js/',}),
-    )
+# App bootstrap_demo
+urlpatterns += patterns('bootstrap_demo',
+    url(r'^bootstrap/$', 'views.get_demo', name="bootstrap"),
+    url(r'^interrogazioni/$', 'views.get_interrogazioni', name="interrogazioni"),
+)

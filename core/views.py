@@ -17,12 +17,12 @@ from forms import ValutazioniForm
 
 # Renderizza la pagina iniziale
 @login_required
-def render_to_home(request):
+def get_interrogazioni(request):
     interrogazioni = Interrogazione.objects.all()
     context = {
         'interrogazioni':interrogazioni,
     }
-    return render_to_response('home.html', RequestContext(request, context))
+    return render_to_response('interrogazioni.html', RequestContext(request, context))
 
 # Gestione valutazioni
 """
@@ -30,7 +30,7 @@ def render_to_home(request):
     @param current_url:       id URL corrente
 """
 @login_required
-def valutazioni(request, id_interrogazione, current_url=None):
+def get_valutazioni(request, id_interrogazione, current_url=None):
     ValutazioniFormSet = modelformset_factory(Score, form=ValutazioniForm, extra=1, max_num=1)
     
     # Raccolta dati e Paginazione

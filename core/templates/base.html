@@ -1,99 +1,65 @@
 <!DOCTYPE html>
-<html lang="it">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="author" content="Flavio Marcato" />
-<meta name="copyright" content="Flavio Marcato's app." />
-<meta name="description" content="Questo sito è stato realizzato per un progetto di ricerca. Ha lo scopo di raccogliere valutazioni degli utenti su rilevanza e qualità di un insieme di pagine web." />
-<title>
-    Qualit&agrave; - {% block title %} Base {% endblock %}
-</title>
+<html>
+  <head>
+    <title>Qualit&agrave; - {% block title %} Base {% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Le CSS -->
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.css" rel="stylesheet">
+    <link href="{{ STATIC_URL }}bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="{{ STATIC_URL }}qualita/css/qualita.css" rel="stylesheet" media="screen">
+    <style type="text/css">
+      #qualita {
+          display:none;   
+      }
+    </style> 
 
-<link href='http://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css'>
-<link rel="stylesheet" href="{{ STATIC_URL }}css/base.css" />
-<link href="//netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.css" rel="stylesheet">
-<style type="text/css">
-    #container
-    {
-        display:none;   
-    }
-</style>
+    {% block extrahead %}{% endblock %}
 
-<link rel="shortcut icon" href="{{ STATIC_URL }}img/qualita-favicon.ico">
+      <!-- Le scripts -->
+    <script src="{{ STATIC_URL }}qualita/js/jquery-1.10.1.js"></script>
+    <script src="{{ STATIC_URL }}bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function() 
+      {
+          $("#qualita").fadeIn("slow");
+      });
+    </script>
 
-<script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.8.3.min.js"></script>
-<script type="text/javascript">
-$(document).ready(function() 
-{
-    // fade in content.
-    $( '#container' ).fadeIn("slow");
-});
-</script>
+  </head>
+  <body>
 
-{% block extrahead %} {% endblock %}
-
-</head>
-
-<body>
-
-<div id="topbar">
-    <div id="topbar-inside">
-        <a href="{% url 'home' %}"><span id="logo-head">P</span><span id="logo-tail">rogetto</span> <span id="logo-head">Q</span><span id="logo-tail">ualit&agrave;</span></a>
-        {% block top-menu %}
-            <div id="topbar-menu">
-                <a class="btn" href="{% url 'logout' %}">
-                    <i class="icon-signout"></i> Esci</a>
-            </div>
-        {% endblock %}
+  <!-- Le navbar -->
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="brand" href="#">Progetto Qualit&agrave;</a>
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+              <li class="active"><a href="{% url 'home' %}">Home</a></li>
+              <li><a href="#sommario">Sommario</a></li>
+              <li><a href="#contatti">Contatti</a></li>
+              {% if user.is_authenticated %}<li><a href="{% url 'logout' %}"><i class="icon-signout"></i> Esci</a></li>{% endif %}
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
     </div>
-</div>
 
-<script type="text/javascript">
-    <!--//--><![CDATA[//><!--
-    document.write( '<div id="container">' );
-    //--><!]]>
-</script>
-<div class="container_12" style="height:100%;">
+  <!-- Le header -->
+    {% block header %}
+    {% endblock %}
 
+  <!-- Le content -->
+    <div class="container" id="qualita">
+    {% block content %}
+    {% endblock %}
+    </div>
 
-{% block content %}
-{% endblock %}
-
-{% block messages %}
-    {% if messages %}
-        {% for message in messages %}
-        <div class="grid_12">
-            <p class="alert alert-{{ message.tags }}">
-                {% ifequal message.tags 'success' %} <i class="icon-ok"></i>{% endifequal %}
-                {% ifequal message.tags 'info' %} <i class="icon-info-sign"></i>{% endifequal %}
-                {{ message }}
-            </p>
-        </div>
-        {% endfor %}
-    {% endif %}
-{% endblock %}
-
-{% block footer %}
-    <div class="clear"></div>
-
-    <div class="grid_12">
-        <div id="botbar">
-            <div id="botbar-inside">
-                <ul>
-                    <li>&copy; 2013 FM</li>
-                    <li>Idea: LP</li>
-                <ul>
-            </div>
-        </div>
-    </div> 
-{% endblock %}
-
-</div>
-
-<script type="text/javascript">
-<!--//--><![CDATA[//><!--
-document.write( '</div>' );
-//--><!]]>
-</script>
-
-</body>
+  </body>
+</html>

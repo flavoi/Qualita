@@ -1,68 +1,40 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 
-{% block sitecss %} {% endblock %}
-{% block extrahead %}
-    <link rel="stylesheet" href="{{ STATIC_URL }}css/src/login.css">
+{% block title %} Login {% endblock %}
+
+{% block header %}
+    <header class="jumbotron subhead" id="overview">
+      <div class="container">
+        <h1>Benvenuti!</h1>
+        <p class="lead">              
+            Questo sito è stato realizzato per un progetto di ricerca. Ha lo scopo di raccogliere valutazioni degli utenti su
+            rilevanza e qualità di un insieme di pagine web. 
+            Se siete interessati a contribuire al progetto, non esitate a registrarvi seguendo il link qui sotto. 
+            L'uso dell'applicazione è molto semplice, e sarete voi a decidere il tempo che vorrete dedicarci.</p>
+        <div id="carbonads-container"><div class="carbonad"><div id="azcarbon"></div><script type="text/javascript">var z = document.createElement("script"); z.type = "text/javascript"; z.async = true; z.src = "http://engine.carbonads.com/z/32341/azcarbon_2_1_0_HORIZDARK"; var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(z, s);</script></div></div>
+      </div>
+    </header>
 {% endblock %}
-
-{% block title %}Login{% endblock %}
-
-{% block top-menu %}{% endblock %}
 
 {% block content %}
-<div class="grid_6">
-    <div class="signin-box">
-        <form action="{% url 'login' %}" method="POST" id="login-form">{% csrf_token %}
-            <label>
-                <strong class="email-label">Email</strong>
-                <input {% if form.errors %}class="form-error"{% endif %} type="text" name="email" />
-            </label>
-            <label>
-                <strong class="passwd-label">Password</strong>
-                <input {% if form.errors %}class="form-error"{% endif %} type="password" name="password"  />
-            </label>
-            {% if form.errors %}
-                <label>
-                    <p class="errormsg">C'&egrave; stato un problema durante la tua autenticazione.</p> 
-                </label>
-            {% endif %}
-            <input type="submit" class="btn" value="Accedi" />
-            <label>
-                <p>Puoi creare il tuo account nella <i class="icon-arrow-right"></i> <a class="qlink" href="{% url 'registrazione' %}">pagina di registrazione</a>.</p>
-            </label>
-        </form>
+    <div class="form-signin">
+    <form action="{% url 'login' %}" method="POST" id="login-form">{% csrf_token %}
+        <h2>Accesso App</h2>
+        {% if form.errors %}
+        <div class="control-group error">
+          <div class="controls">
+            <input class="input-block-level" type="text" name="email" placeholder="Indirizzo Email" id="emailError">
+            <input class="input-block-level" type="password" name="password" placeholder="Password" id="pwdError">
+            <span class="help-inline">C'&egrave; stato un problema con la tua autenticazione.</span>
+          </div>
+        </div>
+            {% else %}
+            <input class="input-block-level" type="text" name="email" placeholder="Indirizzo Email">
+            <input class="input-block-level" type="password" name="password" placeholder="Password">
+        {% endif %}
+        <button class="btn" type="submit">Login</button>
+    </form>
+    <p><a href="{% url 'registrazione' %}"><i class="icon-arrow-right"></i> Pagina di registrazione</a></p>
+    <p><i class="icon-thumbs-up"></i> Grazie a tutti quelli che vorranno contribuire!</p>
     </div>
-</div>
-
-<div class="grid_6">
-    <h1 class="req">Benvenuti!</h1>
-    <div class="description">
-        <p>
-            Questo sito è stato realizzato per un progetto di
-            ricerca. Ha lo scopo di raccogliere valutazioni degli utenti su
-            rilevanza e qualità di un insieme di pagine web. 
-            Se siete interessati a contribuire al progetto, non esitate a registrarvi
-            seguendo il link qui a fianco. 
-            L'uso dell'applicazione è molto semplice, e sarete voi a decidere il tempo che vorrete dedicarci.
-        </p>
-
-        <br />
-
-        <p>
-            <i class="icon-thumbs-up"></i> Grazie in anticipo a tutti quelli che vorranno contribuire!
-        </p>
-    </div>
-
-    <h1 class="req">Risorse</h1>
-    <div class="description">
-    <ul class="icons">
-        <li><i class="icon-link"></i> <a target="_blank" class="llink" href="http://www.whatbrowser.org/intl/it/">Il mio browser</a></li>
-        <li><i class="icon-link"></i> <a target="_blank" class="llink" href="http://db.tt/pWfWYz9m">Sommario progetto</a></li>
-    </ul>
-    </div>
-</div>
-<div class="clear"></div>
-
 {% endblock %}
-
-{% block footer %}{% endblock %}
