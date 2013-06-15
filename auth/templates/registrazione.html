@@ -5,22 +5,32 @@
 {% block top-menu %}{% endblock %}
 
 {% block content %}
-    <div class="grid_6 prefix_3">
-        <div class="signin-box">
-            <form action="{% url 'registrazione' %}" method="POST">{% csrf_token %}
-                {% for field in form %}
-                    <label>
-                        {{ field.label }}
+    <div class="row">
+        <div class="span12">
+            <div class="form-signin">
+                <form action="{% url 'registrazione' %}" method="POST">{% csrf_token %}
+                    <fieldset>
+                        <legend>Registrazione Utente</legend>
+                        <br />
+                    <div>
+                    {% for field in form %}
+                        <label>
+                            {{ field.label }}
+                        </label>
                         {{ field }}
-                    </label>
-                {% endfor %}
-                {% if form_error %}
-                    <label>
-                        <p class="errormsg">C'&egrave; stato un problema durante la tua registrazione.</p> 
-                    </label>
-                {% endif %}
-                <input type="submit" class="btn" value="Registrati" />
-            </form>
+                    {% endfor %}
+                    </div>
+                    {% if form_error %}
+                        <div class="control-group error">
+                          <div class="controls">
+                            <span class="help-inline">C'&egrave; stato un problema con la tua registrazione.</span>
+                          </div>
+                        </div>
+                    {% endif %}
+                    </fieldset>
+                    <button class="btn" type="submit">Conferma dati</button>
+                </form>
+            </div>
         </div>
     </div>
 {% endblock %}
