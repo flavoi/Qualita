@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %} Interrogazioni {% endblock %}
+
+{% block header %}{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="span8 offset2">
+            <div class="page-header">
+                <h1>Interrogazioni</h1>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="span8 offset2">
+            <p>
+                Qui sotto trovate una lista di interrogazioni: pensatele come
+                interrogazioni da sottomettere ad un motore di ricerca. Scegliete
+                quella che vi interessa di più cliccandoci sopra. Tenete presente
+                che in seguito vi sarà sempre consentito sceglierne anche altre.
+            </p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="span8 offset2">
+            <ul class="nav nav-list">
+            {% for int in interrogazioni %}
+                <li>
+                    <a href="{% url 'valutazioni' int.id %}"><i class="icon-arrow-right"></i> {{ int.titolo }}</a>
+                    <p style="margin-left: 20px;"> {{ int.descrizione }}.</p>
+                </li>
+            {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+
+{% endblock %}
