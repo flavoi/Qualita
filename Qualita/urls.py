@@ -24,9 +24,3 @@ urlpatterns += patterns('core',
 urlpatterns += patterns('auth',
     url(r'^registrazione/$', 'views.registrazione', name="registrazione"),
 )
-
-# App bootstrap_demo
-urlpatterns += patterns('bootstrap_demo',
-    url(r'^bootstrap/$', 'views.get_demo', name="bootstrap"),
-    url(r'^interrogazioni/$', 'views.get_interrogazioni', name="interrogazioni"),
-)
