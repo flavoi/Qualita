@@ -7,7 +7,7 @@ root = lambda * x: os.path.join(os.path.abspath(PROJECT_ROOT), *x)
 
 LOGIN_REDIRECT_URL = '/'
 LOGIN_URL = '/login/'
-DEBUG = False
+DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
@@ -28,8 +28,7 @@ DATABASES = {
 } 
 
 # Parse database configuration from $DATABASE_URL
-if not DEBUG:
-    DATABASES['default'] =  dj_database_url.config()
+# DATABASES['default'] =  dj_database_url.config()
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
