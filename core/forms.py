@@ -6,7 +6,7 @@ from django.forms.fields import ChoiceField
 from django.forms.widgets import RadioSelect
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Fieldset, ButtonHolder, Submit
-from crispy_forms.bootstrap import InlineRadios
+from crispy_forms.bootstrap import InlineRadios, StrictButton, FormActions
 
 VALUTAZIONI_SCELTE = get_valutazioni()
 
@@ -55,7 +55,7 @@ class ValutazioniForm(ModelForm):
                 'fonte',
                 'stile',
                 ),
-            ButtonHolder(
-                Submit('submit', 'Conferma Voto')
+            FormActions(
+                Submit('conferma-voto', 'Conferma Voto')
             )
         )
