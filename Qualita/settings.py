@@ -157,6 +157,7 @@ THIRD_PARTY_APPS = (
     'storages',
     's3_folder_storage',
     'emailusernames',
+    'crispy_forms',
 )
 
 LOCAL_APPS = (

@@ -1,106 +1,20 @@
 {% extends 'base.html' %}
 {% load core_extras %}
+{% load crispy_forms_tags %}
 
 {% block title %} Valutazioni {% endblock %}
 
-{% block extrahead %}
-    <style type="text/css">
-      body {
-        display:none;   
-      }
-    </style> 
-{% endblock %}
+{% block extrahead %}{% endblock %}
 
-{% block messages %}{% endblock %}
+{% block content_fluid %}
 
-{% block content %}
-
-{% ifequal url_list|length 0 %}
-    <div class="grid_12">
-        <p class="alert alert-info">
-            <i class="icon-info-sign"></i> Nessuna valutazione disponibile.
-        </p>
-    </div>
-{% else %}
-    {% for url in url_list %}
-        <div class="grid_12">
+{% for url in url_list %}
+    <div class="row-fluid" style="text-align:center;">
+        <div class="span12">
             <a style="text-decoration:none" target="_blank" href="{{ url }}"><h2 class="title"><i class="icon-link"></i> {{ url|decode }}</h2></a>
         </div>
-        
-        <div class="grid_10 push_1">    
-            <div class="description">
-                <p>
-                    Quali sono la rilevanza e la qualità della pagina web presentata qui 
-                    sotto, rispetto all'interrogazione da voi scelta ({{ interrogazione }})? 
-                    Esprimete le vostre valutazioni inserendo un voto da 1 (pessimo)
-                     a 10 (ottimo) per ciascun punto presente nella lista.
-                <p>
-                
-                <br />
-
-                </p>
-
-                    <i class="icon-comment"></i> Una volta terminata la valutazione di questa pagina,
-                    ricordatevi di cliccare su 'Conferma Voto' per inserire i vostri
-                    voti; cliccate invece su 'successivo' se desiderate valutare
-                    un'altra pagina senza inserire i vostri voti per questa.
-                </p>
-                
-                <br />
-
-                <p>
-                    <i class="icon-comment"></i> In caso di ripensamenti, potrete sempre modificare le vostre
-                    valutazioni ritornando sui vostri passi.
-                </p>
-            </div>
-
-        <form action="{% url 'votazioni' interrogazione.pk url.pk %}?page={% if url_list.has_next %}{{ url_list.next_page_number }}{% else %}{{ url_list.number }}{% endif %}" method="POST">{% csrf_token %}
-            {{ formset.management_form }}
-            {% for form in formset.forms %}
-                {% for hidden in form.hidden_fields %}
-                    {{ hidden }}
-                {% endfor %}
-                {% for field in form.visible_fields %}
-                    <div class="grid_2">
-                        <div class="survey-item">
-                            <h2>{{ field.label_tag }}</h2>
-                            {{ field }}
-                            {% if field.errors %}
-                                <label>
-                                    <div class="errormsg">{{ field.errors }}</div> 
-                                </label>
-                            {% endif %}
-                        </div>
-                    </div>
-                {% endfor %}
-            {% endfor %}
-            <div class="clear"></div>
-            <div class="grid_2" style="margin-top: 15px;">
-                <input type="submit" class="btn" value="Conferma Voto" />
-            </div>
-        </form> 
-        </div>
-
-        <div class="clear"></div>
-
-        <div class="grid_4 push_4">
-            <div class="pagination">
-                <span class="step-links">
-                {% if url_list.has_previous %}
-                    <a class="qlink" href="?page={{ url_list.previous_page_number }}">precedente</a> <i class=" icon-arrow-left"></i>
-                {% endif %}
-                <span class="current">
-                    pagina {{ url_list.number }} di {{ url_list.paginator.num_pages }}
-                </span>
-                {% if url_list.has_next %}
-                    <i class="icon-arrow-right"></i> <a class="qlink" href="?page={{ url_list.next_page_number }}">successivo</a>
-                {% endif %}
-                </span>
-            </div>
-        </div>
-
         {% for message in messages %}
-            <div class="grid_12">
+            <div class="span12">
                 <p class="alert alert-{{ message.tags }}">
                     {% ifequal message.tags 'success' %} <i class="icon-ok"></i>{% endifequal %}
                     {% ifequal message.tags 'info' %} <i class="icon-info-sign"></i>{% endifequal %}
@@ -108,21 +22,63 @@
                 </p>
             </div>
         {% endfor %}
+    </div>
 
-        <div class="clear"></div>
+    <div class="row-fluid">
+        <div class="span3">  
+        <!--  
+            <p>
+                Quali sono la rilevanza e la qualità della pagina web presentata qui 
+                sotto, rispetto all'interrogazione da voi scelta ({{ interrogazione }})? 
+                Esprimete le vostre valutazioni inserendo un voto da 1 (pessimo)
+                 a 10 (ottimo) per ciascun punto presente nella lista.
+            <p>
 
-        <div class="grid_12">
-            <hr class="style-eight" />
+            </p>
+                <i class="icon-comment"></i> Una volta terminata la valutazione di questa pagina,
+                ricordatevi di cliccare su 'Conferma Voto' per inserire i vostri
+                voti; cliccate invece su 'successivo' se desiderate valutare
+                un'altra pagina senza inserire i vostri voti per questa.
+            </p>
+
+            <p>
+                <i class="icon-comment"></i> In caso di ripensamenti, potrete sempre modificare le vostre
+                valutazioni ritornando sui vostri passi.
+            </p>
+        -->
+
+            <form action="{% url 'votazioni' interrogazione.pk url.pk %}?page={% if url_list.has_next %}{{ url_list.next_page_number }}{% else %}{{ url_list.number }}{% endif %}" method="POST">{% csrf_token %}
+                {{ formset|crispy }}
+                <input type="submit" class="btn" value="Conferma Voto" />
+            </form> 
         </div>
-        <div class="grid_12" style="height:100%;">
+
+        <!--
+        <div class="grid_4 push_4">
+            <div class="pagination">
+                <span class="step-links">
+                {% if url_list.has_previous %}
+                    <a href="?page={{ url_list.previous_page_number }}">precedente</a> <i class=" icon-arrow-left"></i>
+                {% endif %}
+                <span class="current">
+                    pagina {{ url_list.number }} di {{ url_list.paginator.num_pages }}
+                </span>
+                {% if url_list.has_next %}
+                    <i class="icon-arrow-right"></i> <a href="?page={{ url_list.next_page_number }}">successivo</a>
+                {% endif %}
+                </span>
+            </div>
+        </div>
+        -->
+        <div class="span9" style="height:100%;">
             {% if url.percorso_su_disco %}
                 <iframe id="qualita-frame" name="qualita-frame" src="{{ MEDIA_URL }}{{ url.get_percorso }}" style="overflow:hidden;height:100%;width:100%" height="100%" width="100%"></iframe>
             {% else %}
                 <iframe id="qualita-frame" name="qualita-frame" src="{{ url }}" frameborder="0" style="overflow:hidden; height:200%; width:100%" height="200%" width="100%"></iframe>
             {% endif %}
         </div>
+    </div>
 
-    {% endfor %}
+{% endfor %}
 
-{% endifequal %}
 {% endblock %}
