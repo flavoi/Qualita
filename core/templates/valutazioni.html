@@ -12,6 +12,14 @@
     }
 </style>
 
+
+<script type="text/javascript">
+    $('#tabs a').click(function (e) {
+      e.preventDefault();
+      $(this).tab('show');
+    })
+</script>
+
 {% endblock %}
 
 {% block content_fluid %}
@@ -19,11 +27,11 @@
 {% for url in url_list %}
     <div class="row-fluid" style="text-align:center; border-bottom: 1px solid #eee">
         <div class="span12">
-            <a style="text-decoration:none" target="_blank" href="{{ url }}"><h2 class="title"><i class="icon-link"></i> {{ url|decode }}</h2></a>
+            <a style="text-decoration:none" target="_blank" href="{{ url }}"><h2 class="title"><i class="icon-link"></i> {{ url }}</h2></a>
         </div>
         {% for message in messages %}
             <div class="span8 offset2">
-                <p class="alert alert-{{ message.tags }}">
+                <p class="alert alert-{{ message.tags }}" style="text-align: center;">
                     {% ifequal message.tags 'success' %} <i class="icon-ok"></i>{% endifequal %}
                     {% ifequal message.tags 'info' %} <i class="icon-info-sign"></i>{% endifequal %}
                     {{ message }}
@@ -34,45 +42,37 @@
 
     <div class="row-fluid">
         <div class="span3" style="margin-top:20px; border-right: 1px solid #eee">  
-
-                <div class="tabbable"> <!-- Only required for left/right tabs -->
-                  <ul class="nav nav-tabs" id="myTab">
-                    <li class="active"><a href="#tab1">Help 1</a></li>
-                    <!--<li><a href="#tab2">Section 2</a></li>-->
-                  </ul>
-                  <div class="tab-content">
-                    <div class="tab-pane active" id="tab1">
-                        <p>
-                            Quali sono la rilevanza e la qualità della pagina web presentata qui 
-                            sotto, rispetto all'interrogazione da voi scelta ({{ interrogazione }})? 
-                            Esprimete le vostre valutazioni inserendo un voto da 1 (pessimo)
-                            a 5 (ottimo) per ciascun punto presente nella lista.
-                        </p>
-                    </div>
-                    <div class="tab-pane" id="tab2">
-                      <p>
-                        Una volta terminata la valutazione di questa pagina,
-                        ricordatevi di cliccare su 'Conferma Voto' per inserire i vostri
-                        voti; cliccate invece su 'successivo' se desiderate valutare
-                        un'altra pagina senza inserire i vostri voti per questa.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-        
-        <!--
-            </p>
-                <i class="icon-comment"></i> Una volta terminata la valutazione di questa pagina,
+          <ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
+            <li class="active"><a href="#valuta" data-toggle="tab">Valuta</a></li>
+            <li><a href="#conferma" data-toggle="tab">Conferma</a></li>
+            <li><a href="#ripensa" data-toggle="tab">Ripensa</a></li>
+          </ul>
+          <div class="tab-content">
+            <div class="tab-pane active" id="valuta">
+                <p>
+                    Quali sono la rilevanza e la qualità della pagina web presentata qui 
+                    sotto, rispetto all'interrogazione da voi scelta ({{ interrogazione }})? 
+                    Esprimete le vostre valutazioni inserendo un voto da 1 (pessimo)
+                    a 5 (ottimo) per ciascun punto presente nella lista.
+                </p>
+            </div>
+            <div class="tab-pane" id="conferma">
+              <p>
+                Una volta terminata la valutazione di questa pagina,
                 ricordatevi di cliccare su 'Conferma Voto' per inserire i vostri
                 voti; cliccate invece su 'successivo' se desiderate valutare
                 un'altra pagina senza inserire i vostri voti per questa.
-            </p>
+              </p>
+            </div>
 
-            <p>
-                <i class="icon-comment"></i> In caso di ripensamenti, potrete sempre modificare le vostre
+            <div class="tab-pane" id="ripensa">
+              <p>
+                In caso di ripensamenti, potrete sempre modificare le vostre
                 valutazioni ritornando sui vostri passi.
-            </p>
-        -->
+              </p>
+            </div>
+          </div>
+        
             <div class="pagination pagination-centered">
                 <ul>
                     {% if url_list.has_previous %}
@@ -85,9 +85,9 @@
                 </ul>
             </div>
 
-        <form action="{% url 'votazioni' interrogazione.pk url.pk %}?page={% if url_list.has_next %}{{ url_list.next_page_number }}{% else %}{{ url_list.number }}{% endif %}" method="POST">{% csrf_token %}
-            {% crispy formset formset.form.helper %}
-        </form> 
+            <form action="{% url 'votazioni' interrogazione.pk url.pk %}?page={% if url_list.has_next %}{{ url_list.next_page_number }}{% else %}{{ url_list.number }}{% endif %}" method="POST">{% csrf_token %}
+                {% crispy formset formset.form.helper %}
+            </form> 
         </div>
 
         <div class="span9" style="margin-top: 20px; height:100%;">
@@ -100,12 +100,5 @@
     </div>
 
 {% endfor %}
-
-<script type="text/javascript">
-    $('#myTab a').click(function (e) {
-      e.preventDefault();
-      $(this).tab('show');
-    })
-</script>
 
 {% endblock %}

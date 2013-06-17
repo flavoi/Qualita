@@ -18,11 +18,9 @@
       }
     </style> 
 
-    {% block extrahead %}{% endblock %}
-
       <!-- Le scripts -->
     <script src="{{ STATIC_URL }}qualita/js/jquery-1.10.1.js"></script>
-    <script src="{{ STATIC_URL }}bootstrap/js/bootstrap.min.js"></script>
+    <script src="{{ STATIC_URL }}bootstrap/js/bootstrap.js"></script>
     <script type="text/javascript">
       $(document).ready(function() 
       {
@@ -30,6 +28,7 @@
       });
     </script>
 
+  {% block extrahead %}{% endblock %}
   </head>
   <body>
 
