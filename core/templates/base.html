@@ -16,6 +16,10 @@
       p {
          text-align: justify; 
       }
+
+      a:hover {
+        text-decoration:none;
+      }
     </style> 
 
       <!-- Le scripts -->
@@ -25,7 +29,7 @@
       $(document).ready(function() 
       {
           $("#qualita").fadeIn("slow");
-      });
+      }); 
     </script>
 
   {% block extrahead %}{% endblock %}
@@ -59,7 +63,8 @@
     {% endblock %}
 
   <!-- Le content -->
-    <div class="container" id="qualita">
+  <div class="content" id="qualita">
+    <div class="container">
     {% block content %}
     {% endblock %}
     </div>
@@ -68,6 +73,7 @@
     {% block content_fluid %}
     {% endblock %}
     </div>
+  </div>
 
   </body>
 </html>

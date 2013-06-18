@@ -10,6 +10,8 @@
     .asteriskField {
         display: none;
     }
+
+    .fixed { position: fixed; top: 50px; }
 </style>
 
 
@@ -18,6 +20,14 @@
       e.preventDefault();
       $(this).tab('show');
     })
+
+    $(function() {
+        var fixadent = $("#fixadent"), pos = fixadent.offset();
+        $(window).scroll(function() {
+        if($(this).scrollTop() > (pos.top + 10) && fixadent.css('position') == 'static') { fixadent.addClass('fixed'); }
+        else if($(this).scrollTop() <= pos.top && fixadent.hasClass('fixed')){ fixadent.removeClass('fixed'); }
+        })
+    });
 </script>
 
 {% endblock %}
@@ -27,7 +37,7 @@
 {% for url in url_list %}
     <div class="row-fluid" style="text-align:center; border-bottom: 1px solid #eee">
         <div class="span12">
-            <a style="text-decoration:none" target="_blank" href="{{ url }}"><h2 class="title"><i class="icon-link"></i> {{ url }}</h2></a>
+            <a target="_blank" href="{{ url }}"><h2><i class="icon-link"></i> {{ url }}</h2></a>
         </div>
         {% for message in messages %}
             <div class="span8 offset2">
@@ -45,10 +55,10 @@
           <ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
             <li class="active"><a href="#valuta" data-toggle="tab">Valuta</a></li>
             <li><a href="#conferma" data-toggle="tab">Conferma</a></li>
-            <li><a href="#ripensa" data-toggle="tab">Ripensa</a></li>
+            <li><a href="#ripensa" data-toggle="tab">Ritorna</a></li>
           </ul>
           <div class="tab-content">
-            <div class="tab-pane active" id="valuta">
+            <div class="tab-pane fade in active" id="valuta">
                 <p>
                     Quali sono la rilevanza e la qualità della pagina web presentata qui 
                     sotto, rispetto all'interrogazione da voi scelta ({{ interrogazione }})? 
@@ -56,7 +66,7 @@
                     a 5 (ottimo) per ciascun punto presente nella lista.
                 </p>
             </div>
-            <div class="tab-pane" id="conferma">
+            <div class="tab-pane fade" id="conferma">
               <p>
                 Una volta terminata la valutazione di questa pagina,
                 ricordatevi di cliccare su 'Conferma Voto' per inserire i vostri
@@ -65,7 +75,7 @@
               </p>
             </div>
 
-            <div class="tab-pane" id="ripensa">
+            <div class="tab-pane fade" id="ripensa">
               <p>
                 In caso di ripensamenti, potrete sempre modificare le vostre
                 valutazioni ritornando sui vostri passi.
@@ -85,9 +95,11 @@
                 </ul>
             </div>
 
+            <div id="fixadent">
             <form action="{% url 'votazioni' interrogazione.pk url.pk %}?page={% if url_list.has_next %}{{ url_list.next_page_number }}{% else %}{{ url_list.number }}{% endif %}" method="POST">{% csrf_token %}
                 {% crispy formset formset.form.helper %}
             </form> 
+            </div>
         </div>
 
         <div class="span9" style="margin-top: 20px; height:100%;">
