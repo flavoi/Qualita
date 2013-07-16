@@ -56,6 +56,6 @@ class ValutazioniForm(ModelForm):
                 'stile',
                 ),
             FormActions(
-                Submit('conferma-voto', 'Conferma Voto')
+                Submit('conferma-voto', 'Conferma', css_class='btn-warning')
             )
         )
