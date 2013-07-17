@@ -8,8 +8,6 @@ rilevanza e qualità di un insieme di pagine web.
 
 http://qualita-dei.herokuapp.com
 
-- [x] Colore bottoni e tema
-- [ ] Jumbotron in pagina di login
-- [ ] Schede in terza pagina
-- [ ] Slug per interrogazioni
-- [ ] Supporto captcha
+- Pagina 1: autenticazione e registrazione
+- Pagina 2: scelta interrogazioni
+- Pagina 3: votazioni
