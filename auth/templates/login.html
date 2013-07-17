@@ -19,28 +19,28 @@
 {% endblock %}
 
 {% block content %}
-
-    <div class="form-signin">
-    <form action="{% url 'login' %}" method="POST" id="login-form">{% csrf_token %}
-        <fieldset>
-            <legend>Accesso Web App</legend>
-            <br />
-            {% if form.errors %}
-            <div class="control-group error">
-              <div class="controls">
-                <input class="input-block-level" type="text" name="email" placeholder="Indirizzo Email" id="emailError">
-                <input class="input-block-level" type="password" name="password" placeholder="Password" id="pwdError">
-                <span class="help-inline">L'autenticazione &egrave; fallita.</span>
-              </div>
+            <div class="form-signin">
+            <form action="{% url 'login' %}" method="POST" id="login-form">{% csrf_token %}
+                <fieldset>
+                    <legend>Accesso Web App</legend>
+                    <br />
+                    {% if form.errors %}
+                    <div class="control-group error">
+                      <div class="controls">
+                        <input class="input-block-level" type="text" name="email" placeholder="Indirizzo Email" id="emailError">
+                        <input class="input-block-level" type="password" name="password" placeholder="Password" id="pwdError">
+                        <span class="help-inline">L'autenticazione &egrave; fallita.</span>
+                      </div>
+                    </div>
+                        {% else %}
+                        <input class="input-block-level" type="text" name="email" placeholder="Indirizzo Email">
+                        <input class="input-block-level" type="password" name="password" placeholder="Password">
+                    {% endif %}
+                </fieldset>
+                <button class="btn btn-success" type="submit">Login</button>
+            </form>
+            <p><a href="{% url 'registrazione' %}"><i class="icon-arrow-right"></i> Pagina di registrazione</a></p>
+            <p><i class="icon-thumbs-up"></i> Grazie a tutti quelli che vorranno contribuire!</p>
             </div>
-                {% else %}
-                <input class="input-block-level" type="text" name="email" placeholder="Indirizzo Email">
-                <input class="input-block-level" type="password" name="password" placeholder="Password">
-            {% endif %}
-        </fieldset>
-        <button class="btn btn-success" type="submit">Login</button>
-    </form>
-    <p><a href="{% url 'registrazione' %}"><i class="icon-arrow-right"></i> Pagina di registrazione</a></p>
-    <p><i class="icon-thumbs-up"></i> Grazie a tutti quelli che vorranno contribuire!</p>
-    </div>
+    
 {% endblock %}
