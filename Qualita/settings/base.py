@@ -138,7 +138,7 @@ ADMIN_MEDIA_PREFIX = STATIC_URL + 'admin/'
 
 ALLOWED_HOSTS = [
     '.amazonaws.com.',
-    'locahost',
+    '.herokuapp.com',
 ]
 
 DJANGO_APPS = (
