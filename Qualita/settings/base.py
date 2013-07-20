@@ -9,7 +9,7 @@ root = lambda * x: os.path.join(os.path.abspath(PROJECT_ROOT), *x)
 
 LOGIN_REDIRECT_URL = '/'
 LOGIN_URL = '/login/'
-DEBUG = True
+DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS as TCP
 
@@ -19,19 +19,10 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2', 
-        'NAME': 'qualita',                          
-        'USER': 'vagrant',                                      
-        'PASSWORD': 'latest0',                                  
-        'HOST': '',                                      
-        'PORT': '',                                  
-    }
-} 
-
 # Parse database configuration from $DATABASE_URL
-DATABASES['default'] =  dj_database_url.config()
+DATABASES =  {
+    'default': dj_database_url.config()
+}
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -94,7 +85,7 @@ STATICFILES_FINDERS = (
 )
 
 # Make this unique, and don't share it with anybody.
-SECRET_KEY = 'hf604^)*+x&amp;qq6%t9o*#0ceq(ky6=mg@a)0tju)rxpf%8x$zyk'
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
@@ -129,14 +120,14 @@ TEMPLATE_DIRS = (
     # Don't forget to use absolute paths, not relative paths.
 )
 
+# Amazon S3 support
+AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
 
-# Amazon S3 Support
 DEFAULT_FILE_STORAGE = 's3_folder_storage.s3.DefaultStorage'
 DEFAULT_S3_PATH = "media"
 STATICFILES_STORAGE = 's3_folder_storage.s3.StaticStorage'
 STATIC_S3_PATH = "static"
-AWS_ACCESS_KEY_ID = "AKIAI7JJVSA4PR37C6HA"
-AWS_SECRET_ACCESS_KEY = "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"
 AWS_STORAGE_BUCKET_NAME = "qualita-dei-assets"
 
 MEDIA_ROOT = '/%s/' % DEFAULT_S3_PATH
@@ -144,7 +135,6 @@ MEDIA_URL = '//s3.amazonaws.com/%s/media/' % AWS_STORAGE_BUCKET_NAME
 STATIC_ROOT = "/%s/" % STATIC_S3_PATH
 STATIC_URL = '//s3.amazonaws.com/%s/static/' % AWS_STORAGE_BUCKET_NAME
 ADMIN_MEDIA_PREFIX = STATIC_URL + 'admin/'
-
 
 DJANGO_APPS = (
     'django.contrib.auth',
