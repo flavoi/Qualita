@@ -2,6 +2,7 @@
 
 import os
 import dj_database_url
+from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS as TCP
 
 here = lambda * x: os.path.join(os.path.abspath(os.path.dirname(__file__)), *x)
 PROJECT_ROOT = here("..")
@@ -9,9 +10,8 @@ root = lambda * x: os.path.join(os.path.abspath(PROJECT_ROOT), *x)
 
 LOGIN_REDIRECT_URL = '/'
 LOGIN_URL = '/login/'
-DEBUG = False
+DEBUG = True
 TEMPLATE_DEBUG = DEBUG
-from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS as TCP
 
 ADMINS = (
     ('Flavio Marcato', 'marcatofla@gmail.com'),
