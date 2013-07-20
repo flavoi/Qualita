@@ -4,39 +4,9 @@
 
 {% block title %} Valutazioni {% endblock %}
 
-
-
 {% block extrahead %}
 
-<style>
-    .asteriskField {
-        display: none;
-    }
-
-    .fixed { position: fixed; top: 50px; }
-
-    html, body { 
-        margin: 0px; 
-        padding: 0px;
-        height: 100%;
-    }
-
-    iframe {
-        display: block;
-        height: 100%;
-        width: 100%;
-        border: none;
-    }
-
-    .content {
-        height: 100%;
-    }
-
-    .container-fluid {
-        height: 100%;
-    }
-</style>
-
+<link href="{{ STATIC_URL }}qualita/css/valutazioni.css" rel="stylesheet" media="screen">
 
 <script type="text/javascript">
     $('#tabs a').click(function (e) {
@@ -125,7 +95,7 @@
             </div>
         </div>
 
-        <div class="span9" style="margin-top: 20px; height:100%;">
+        <div class="span9" style="margin-top: 20px; height:90%;">
             {% if url.percorso_su_disco %}
                 <iframe id="qualita-frame" name="qualita-frame" src="{{ MEDIA_URL }}{{ url.get_percorso }}" height="100%" width="100%"></iframe>
             {% else %}
@@ -137,3 +107,5 @@
 {% endfor %}
 
 {% endblock %}
+
+{% block footer %}{% endblock %}

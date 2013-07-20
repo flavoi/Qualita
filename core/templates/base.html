@@ -46,6 +46,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
+          <a class="brand" href="{% url 'home' %}">Progetto Qualit&agrave;</a>
           <div class="nav-collapse collapse">
             <ul class="nav">
               <li class="active"><a href="{% url 'home' %}">Home</a></li>
@@ -74,5 +75,14 @@
     </div>
   </div>
 
+  {% block footer %}
+    <!-- Footer
+    ================================================== -->
+    <footer class="footer">
+      <div class="container">
+        <p>Progettato con passione da <a href="https://twitter.com/flamarcato" target="_blank">@flamarcato</a>.</p>
+    </footer>
+  {% endblock %}
+  
   </body>
 </html>
