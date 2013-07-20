@@ -136,6 +136,8 @@ STATIC_ROOT = "/%s/" % STATIC_S3_PATH
 STATIC_URL = '//s3.amazonaws.com/%s/static/' % AWS_STORAGE_BUCKET_NAME
 ADMIN_MEDIA_PREFIX = STATIC_URL + 'admin/'
 
+ALLOWED_HOSTS = ['s3.amazonaws.com']
+
 DJANGO_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',
