@@ -7,6 +7,7 @@
     <!-- Le CSS -->
     <link href="//netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.css" rel="stylesheet">
     <link href="{{ STATIC_URL }}bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    
     <link href="{{ STATIC_URL }}qualita/css/extra.css" rel="stylesheet" media="screen">
     <link href="{{ STATIC_URL }}qualita/img/qualita.ico" rel="shortcut icon">
     <style type="text/css">
@@ -21,9 +22,10 @@
       a:hover {
         text-decoration:none;
       }
+
     </style> 
 
-      <!-- Le scripts -->
+    <!-- Le scripts -->
     <script src="{{ STATIC_URL }}qualita/js/jquery-1.10.1.js"></script>
     <script src="{{ STATIC_URL }}bootstrap/js/bootstrap.js"></script>
     <!--[if lt IE 9]>
@@ -42,14 +44,18 @@
 
   <!-- Le navbar -->
     <div class="navbar navbar-inverse navbar-fixed-top">
+      
       <div class="navbar-inner">
+      {% block topbar %}
         <div class="container">
           <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="brand" href="{% url 'home' %}">Progetto Qualit&agrave;</a>
+            <a class="brand" href="{% url 'home' %}">Progetto Qualit&agrave;</a>
+          
           <div class="nav-collapse collapse">
             <ul class="nav">
               <li class="active"><a href="{% url 'home' %}">Home</a></li>
@@ -58,7 +64,9 @@
             </ul>
           </div><!--/.nav-collapse -->
         </div>
+      {% endblock %}
       </div>
+      
     </div>
 
   <!-- Le header -->
@@ -79,11 +87,11 @@
   </div>
 
   {% block footer %}
-    <!-- Footer
-    ================================================== -->
+    <!-- Le footer -->
     <footer class="footer">
       <div class="container">
         <p>Progettato con passione da <a href="https://twitter.com/flamarcato" target="_blank">@flamarcato</a>.</p>
+      </div>
     </footer>
   {% endblock %}
   

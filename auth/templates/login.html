@@ -2,8 +2,9 @@
 
 {% block title %} Login {% endblock %}
 
-{% block header %}
+{% block topbar %}{% endblock %}
 
+{% block header %}
     <span class="hidden-phone">
         <header class="jumbotron" id="overview">
           <div class="container">
@@ -46,6 +47,6 @@
             </fieldset>
             <button class="btn btn-success" type="submit">Login</button>
         </form>
-        <p><a href="{% url 'registrazione' %}"><i class="icon-arrow-right"></i> Pagina di registrazione</a></p>
+        <p>Ottenete le credenziali alla <a href="{% url 'registrazione' %}">pagina di registrazione <i class="icon-key"></i></a></p>
     </div>
 {% endblock %}
