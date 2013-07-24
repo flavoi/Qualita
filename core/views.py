@@ -38,7 +38,7 @@ def get_valutazioni(request, id_interrogazione, current_url=None):
     page = request.GET.get('pagina')
     
     # Visualizza modal alla prima pagina di ogni valutazione
-    # La sessione limita la visualizzazione in caso di navigazione ripetuta alla prima pagina
+    # Limita la visualizzazione in caso di navigazione ripetuta alla prima pagina
     if page is None or int(page) == 1 and not request.session.get('readmodal', None):
         modal = True
         request.session['readmodal'] = 1
