@@ -9,10 +9,11 @@
 <link href="{{ STATIC_URL }}qualita/css/valutazioni.css" rel="stylesheet" media="screen">
 
 <script type="text/javascript">
-    $('#tabs a').click(function (e) {
-      e.preventDefault();
-      $(this).tab('show');
-    })
+    $(function ()
+    { 
+        $("#example").popover({ trigger: "hover" });
+    }
+    );
 
     $(function() {
         var fixadent = $("#fixadent"), pos = fixadent.offset();
@@ -27,6 +28,8 @@
         $('#myModal').modal('show');
     });
     {% endif %}
+
+
 </script>
 
 {% endblock %}
@@ -64,7 +67,7 @@
             <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                    <h3 id="myModalLabel">Navigazione</h3>
+                    <h3 id="myModalLabel">Istruzioni</h3>
                 </div>
                 <div class="modal-body">
                     <p>

@@ -5,7 +5,7 @@ from django.forms import ModelForm
 from django.forms.fields import ChoiceField
 from django.forms.widgets import RadioSelect
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Layout, Fieldset, ButtonHolder, Submit
+from crispy_forms.layout import Layout, Fieldset, ButtonHolder, Submit, HTML
 from crispy_forms.bootstrap import InlineRadios, StrictButton, FormActions
 
 VALUTAZIONI_SCELTE = get_valutazioni()
@@ -51,6 +51,9 @@ class ValutazioniForm(ModelForm):
         self.helper.layout = Layout(
             InlineRadios(
                 'rilevanza',
+                HTML("""
+                    <a href="#" id="example" class="btn btn-success" data-trigger="hover" rel="popover" data-content="It's so simple to create a tooltop for my website!" data-original-title="Twitter Bootstrap Popover">hover for popover</a>
+                """),
                 'leggibilita',
                 'fonte',
                 'stile',
