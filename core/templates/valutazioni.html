@@ -21,6 +21,12 @@
         else if($(this).scrollTop() <= pos.top && fixadent.hasClass('fixed')){ fixadent.removeClass('fixed'); }
         })
     });
+
+    {% if modal %}
+    $(window).load(function(){
+        $('#myModal').modal('show');
+    });
+    {% endif %}
 </script>
 
 {% endblock %}
@@ -45,57 +51,59 @@
 
     <div class="row-fluid" style="height: 100%;">
         <div class="span3" style="margin-top:20px; border-right: 1px solid #eee; padding-right: 15px">  
-          <ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
-            <li class="active"><a href="#valuta" data-toggle="tab">Valuta</a></li>
-            <li><a href="#conferma" data-toggle="tab">Conferma</a></li>
-            <li><a href="#ripensa" data-toggle="tab">Ritorna</a></li>
-          </ul>
-          <div class="tab-content">
-            <div class="tab-pane fade in active" id="valuta">
-                <p>
-                    Quali sono la rilevanza e la qualità della pagina web presentata qui 
-                    sotto, rispetto all'interrogazione da voi scelta ({{ interrogazione }})? 
-                    Esprimete le vostre valutazioni inserendo un voto da 1 (pessimo)
-                    a 5 (ottimo) per ciascun punto presente nella lista.
-                </p>
-            </div>
-            <div class="tab-pane fade" id="conferma">
-              <p>
-                Una volta terminata la valutazione di questa pagina,
-                ricordatevi di cliccare su 'Conferma Voto' per inserire i vostri
-                voti; cliccate invece su 'successivo' se desiderate valutare
-                un'altra pagina senza inserire i vostri voti per questa.
-              </p>
+            <p class="text-info">
+                Quali sono la rilevanza e la qualità della pagina web presentata qui 
+                sotto, rispetto all'interrogazione da voi scelta ({{ interrogazione }})? 
+                Esprimete le vostre valutazioni inserendo un voto da 1 (pessimo)
+                a 5 (ottimo) per ciascun punto presente nella lista.
+            </p>
+        <!-- Button to trigger modal -->
+            <a href="#myModal" role="button" class="btn btn-block" data-toggle="modal">Aiuto</a>
+
+            <!-- Modal -->
+            <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h3 id="myModalLabel">Navigazione</h3>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        Una volta terminata la valutazione di questa pagina,
+                        ricordatevi di cliccare su <strong>Conferma</strong> per inserire i vostri
+                        voti; cliccate invece su una freccia <code><i class="icon-arrow-left"></i></code> o 
+                        <code><i class="icon-arrow-right"></i></code> se desiderate valutare
+                        un'altra pagina senza inserire i vostri voti per questa.
+                     </p>
+                    <p>
+                        In caso di ripensamenti, potrete sempre modificare le vostre
+                        valutazioni ritornando sui vostri passi.
+                    </p>
+                </div>
+                <div class="modal-footer">
+                <button class="btn" data-dismiss="modal" aria-hidden="true">Chiudi</button>
+                </div>
             </div>
 
-            <div class="tab-pane fade" id="ripensa">
-              <p>
-                In caso di ripensamenti, potrete sempre modificare le vostre
-                valutazioni ritornando sui vostri passi.
-              </p>
-            </div>
-          </div>
-        
             <div class="pagination pagination-centered">
                 <ul>
                     {% if url_list.has_previous %}
-                        <li><a href="?page={{ url_list.previous_page_number }}"><i class=" icon-arrow-left"></i></a></li>
+                        <li><a href="?pagina={{ url_list.previous_page_number }}"><i class=" icon-arrow-left"></i></a></li>
                     {% endif %}
                         <li><a href="#">pagina {{ url_list.number }} di {{ url_list.paginator.num_pages }}</a></li>
                     {% if url_list.has_next %}
-                        <li><a href="?page={{ url_list.next_page_number }}"><i class="icon-arrow-right"></i></a></li>
+                        <li><a href="?pagina={{ url_list.next_page_number }}"><i class="icon-arrow-right"></i></a></li>
                     {% endif %}
                 </ul>
             </div>
 
             <div id="fixadent">
-            <form action="{% url 'votazioni' interrogazione.pk url.pk %}?page={% if url_list.has_next %}{{ url_list.next_page_number }}{% else %}{{ url_list.number }}{% endif %}" method="POST">{% csrf_token %}
-                {% crispy formset formset.form.helper %}
-            </form> 
+                <form action="{% url 'votazioni' interrogazione.pk url.pk %}?pagina={% if url_list.has_next %}{{ url_list.next_page_number }}{% else %}{{ url_list.number }}{% endif %}" method="POST">{% csrf_token %}
+                    {% crispy formset formset.form.helper %}
+                </form> 
             </div>
         </div>
 
-        <div class="span9" style="margin-top: 20px; height:90%;">
+        <div class="span9" style="margin-top: 20px; height:100%;">
             {% if url.percorso_su_disco %}
                 <iframe id="qualita-frame" name="qualita-frame" src="{{ MEDIA_URL }}{{ url.get_percorso }}" height="100%" width="100%"></iframe>
             {% else %}
