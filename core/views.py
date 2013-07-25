@@ -37,14 +37,6 @@ def get_valutazioni(request, id_interrogazione, current_url=None):
     # Raccolta dati e Paginazione
     page = request.GET.get('pagina')
     
-    # Visualizza modal alla prima pagina di ogni valutazione
-    # La sessione limita la visualizzazione in caso di navigazione ripetuta alla prima pagina
-    if page is None or int(page) == 1 and not request.session.get('readmodal', None):
-        modal = True
-        request.session['readmodal'] = 1
-    else:
-        modal = False
-
     interrogazione = Interrogazione.objects.get(id=id_interrogazione)                
     url_list = interrogazione.url.all()
     paginator = Paginator(url_list, 1)
@@ -78,6 +70,5 @@ def get_valutazioni(request, id_interrogazione, current_url=None):
             'formset': formset,
             'id_interrogazione': id_interrogazione,
             'interrogazione': interrogazione,
-            'modal': modal,
         }
         return render_to_response('valutazioni.html', RequestContext(request, context))

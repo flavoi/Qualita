@@ -7,53 +7,62 @@ from django.forms.widgets import RadioSelect
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Fieldset, ButtonHolder, Submit, HTML
 from crispy_forms.bootstrap import InlineRadios, StrictButton, FormActions
+from django.utils.safestring import mark_safe
 
 VALUTAZIONI_SCELTE = get_valutazioni()
+
+def aiuto(title, label):
+    head = mark_safe("<strong>%s&nbsp;</strong>" % title)
+    tail = mark_safe("<a href='#' class='pophelp' data-trigger='hover' rel='popover' data-original-title='%s' data-content='%s'> <i class='icon-pencil'></i></a>" % (title, label))
+    return head + tail
 
 class ValutazioniForm(ModelForm):
 
     rilevanza = ChoiceField(
-        required=True,
-        widget=RadioSelect, 
-        choices=VALUTAZIONI_SCELTE, 
-        initial="1",
+        required = True,
+        widget = RadioSelect, 
+        choices = VALUTAZIONI_SCELTE, 
+        label = aiuto("Rilevanza", "aiuto rilevanza!"),
+        initial = "1",
     )
 
     leggibilita = ChoiceField(
-        required=True,
-        widget=RadioSelect, 
-        choices=VALUTAZIONI_SCELTE, 
-        label="Leggibilità", 
-        initial="1",
+        required=  True,
+        widget = RadioSelect, 
+        choices = VALUTAZIONI_SCELTE, 
+        label = aiuto("Leggibilità", "aiuto leggibilità!"),
+        initial = "1",
     )
 
     fonte = ChoiceField(
-        required=True,
-        widget=RadioSelect, 
-        choices=VALUTAZIONI_SCELTE,
-        initial="1",
+        required = True,
+        widget = RadioSelect, 
+        choices = VALUTAZIONI_SCELTE,
+        label = aiuto("Fonte", "aiuto fonte!"),
+        initial = "1",
     )
     
     stile = ChoiceField(
-        required=True,
-        widget=RadioSelect,
-        choices=VALUTAZIONI_SCELTE, 
-        initial="1",
+        required = True,
+        widget = RadioSelect,
+        choices = VALUTAZIONI_SCELTE, 
+        label = aiuto("Stile", "aiuto stile!"),
+        initial = "1",
     )
 
     class Meta:
         model = Score
         exclude = ('id', 'url', 'author', 'commento')
 
+
+
     def __init__(self, *args, **kwargs):
         super(ValutazioniForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper()
+        self.helper.form_class = 'form-horizontal'
         self.helper.layout = Layout(
             InlineRadios(
                 'rilevanza',
-                HTML("""
-                    <a href="#" id="example" class="btn btn-success" data-trigger="hover" rel="popover" data-content="It's so simple to create a tooltop for my website!" data-original-title="Twitter Bootstrap Popover">hover for popover</a>
-                """),
                 'leggibilita',
                 'fonte',
                 'stile',
