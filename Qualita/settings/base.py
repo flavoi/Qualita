@@ -10,7 +10,7 @@ root = lambda * x: os.path.join(os.path.abspath(PROJECT_ROOT), *x)
 
 LOGIN_REDIRECT_URL = '/'
 LOGIN_URL = '/login/'
-DEBUG = True
+DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
