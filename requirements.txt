@@ -1,4 +1,6 @@
 Django==1.5.1
+PIL==1.1.7
+Pillow==2.1.0
 South==0.7.6
 argparse==1.2.1
 boto==2.9.2
@@ -8,6 +10,7 @@ django-email-as-username==1.6.5
 django-extensions==1.1.1
 django-floppyforms==1.1
 django-s3-folder-storage==0.1
+django-simple-captcha==0.3.8
 django-storages==1.1.8
 django-suit==0.2.1
 psycopg2==2.5

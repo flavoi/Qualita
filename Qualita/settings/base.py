@@ -112,6 +112,8 @@ STATIC_ROOT = "/%s/" % STATIC_S3_PATH
 STATIC_URL = '//s3.amazonaws.com/%s/static/' % AWS_STORAGE_BUCKET_NAME
 ADMIN_MEDIA_PREFIX = STATIC_URL + 'admin/'
 
+CAPTCHA_CHALLENGE_FUNCT = 'captcha.helpers.math_challenge'
+
 ALLOWED_HOSTS = [
     '.amazonaws.com.',
     '.herokuapp.com',
@@ -134,6 +136,7 @@ THIRD_PARTY_APPS = (
     's3_folder_storage',
     'emailusernames',
     'crispy_forms',
+    'captcha',
 )
 
 LOCAL_APPS = (

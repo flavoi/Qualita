@@ -24,3 +24,8 @@ urlpatterns += patterns('core',
 urlpatterns += patterns('auth',
     url(r'^registrazione/$', 'views.registrazione', name="registrazione"),
 )
+
+# App captcha
+urlpatterns += patterns('',
+    url(r'^captcha/', include('captcha.urls')),
+)

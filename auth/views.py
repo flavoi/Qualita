@@ -8,7 +8,7 @@ from django.template import RequestContext
 from django.contrib.auth import REDIRECT_FIELD_NAME, login as auth_login, logout as auth_logout, authenticate
 
 # Email as username
-from emailusernames.forms import EmailUserCreationForm
+from forms import RegistrationForm as EmailUserCreationForm
 from emailusernames.utils import create_user, get_user, user_exists
 
 # Gestione messaggi
