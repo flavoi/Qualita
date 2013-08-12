@@ -6,7 +6,7 @@ rilevanza e qualità di un insieme di pagine web.
 
 ### In fase di test
 
-http://qualita-dei.herokuapp.com
+http://progettoqualita.herokuapp.com/
 
 - Pagina 1: autenticazione e registrazione
 - Pagina 2: scelta interrogazioni
