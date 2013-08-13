@@ -3,6 +3,7 @@ from models import *
 
 class InterrogazioneAdmin(admin.ModelAdmin):
     list_display = ('titolo', 'descrizione')
+    prepopulated_fields = {"slug": ("titolo",)}
 
 class URLAdmin(admin.ModelAdmin):
     list_display = ('indirizzo', 'percorso_su_disco')

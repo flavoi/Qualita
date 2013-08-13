@@ -1,4 +1,7 @@
 #!/usr/bin/env python
+"""
+   standard manage.py
+"""
 import os
 import sys
 
