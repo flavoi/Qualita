@@ -37,7 +37,7 @@
 {% for url in url_list %}
     <div class="row-fluid" style="text-align:center; border-bottom: 1px solid #eee; margin-top: 40px;">
         <div class="span12">
-            <a target="_blank" href="{{ url }}"><h2><i class="icon-link"></i> {{ url }}</h2></a>
+            <h2>{{ interrogazione|title }} <i class="icon-chevron-right"></i> <a target="_blank" href="{{ url }}">{{ url }}</h2></a>
         </div>
         {% for message in messages %}
             <div class="span8 offset2">
@@ -52,8 +52,6 @@
 
     <div class="row-fluid" style="height: 100%;">
         <div class="span3" style="margin-top:20px; border-right: 1px solid #eee; padding-right: 15px">  
-            <p class="text-info">Interrogazione corrente: {{ interrogazione|lower }}.</p>
-
             <p>
                 Quali sono la rilevanza e la qualità della pagina web presentata qui 
                 sotto, rispetto all'interrogazione da voi scelta? 

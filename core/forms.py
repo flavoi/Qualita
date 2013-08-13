@@ -13,19 +13,20 @@ VALUTAZIONI_SCELTE = get_valutazioni()
 
 def aiuto(title, label):
     head = mark_safe("<strong>%s&nbsp;</strong>" % title)
-    tail = mark_safe("<a href='#' class='pophelp' data-trigger='hover' rel='popover' data-original-title='%s' data-content='%s'> <i class='icon-pencil'></i></a>" % (title, label))
+    tail = mark_safe("<a href='#' class='pophelp' data-trigger='hover' rel='popover' data-original-title='%s' data-content='%s'> <i class='icon-info-sign'></i> </a>" % (title, label))
     return head + tail
 
 class ValutazioniForm(ModelForm):
 
+    AIUTO_RILEVANZA = "Aiuto rilevanza!"
     rilevanza = ChoiceField(
         required = True,
         widget = RadioSelect, 
         choices = VALUTAZIONI_SCELTE, 
-        label = aiuto("Rilevanza", "aiuto rilevanza!"),
+        label = aiuto("Rilevanza", AIUTO_RILEVANZA),
         initial = "1",
     )
-
+    
     leggibilita = ChoiceField(
         required=  True,
         widget = RadioSelect, 

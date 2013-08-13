@@ -16,5 +16,5 @@ def copyright(request):
 
 
 def interrogazioni(request):
-	interrogazioni = Interrogazione.objects.all()
+	interrogazioni = Interrogazione.objects.all().values()
 	return {'interrogazioni': interrogazioni}
