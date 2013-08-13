@@ -149,6 +149,8 @@ INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 # Supporto suit-admin
 TEMPLATE_CONTEXT_PROCESSORS = TCP + (
     'django.core.context_processors.request',
+    'core.context.copyright',
+    'core.context.interrogazioni',
 )
 
 # Django Suit configuration example

@@ -62,6 +62,14 @@
           <div class="nav-collapse collapse">
             <ul class="nav">
               <li class="active"><a href="{% url 'home' %}">Home</a></li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Interrogazioni <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  {% for int in interrogazioni %}
+                    <li><a href="#">{{ int }}</a></li>
+                  {% endfor %}
+                </ul>
+              </li>
               {% if user.is_superuser %}<li><a href="/admin"><i class="icon-puzzle-piece"></i> Admin</a></li>{% endif %}
               {% if user.is_authenticated %}<li><a href="{% url 'logout' %}"><i class="icon-signout"></i> Logout</a></li>{% endif %}
             </ul>
@@ -93,7 +101,7 @@
     <!-- Le footer -->
     <footer class="footer">
       <div class="container">
-        <p>Un lavoro di <a href="https://twitter.com/flamarcato" target="_blank">@flamarcato</a>.</p>
+        <p>Un lavoro di <a href="https://twitter.com/flamarcato" target="_blank">@flamarcato</a> - &copy; {{ copyright }}</p>
       </div>
     </footer>
   {% endblock %}
