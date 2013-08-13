@@ -49,8 +49,8 @@
     <div class="navbar navbar-inverse navbar-fixed-top">
       
       <div class="navbar-inner">
-      {% block topbar %}
         <div class="container">
+        {% block topbar %}
           <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
             
             <span class="icon-bar"></span>
@@ -76,8 +76,8 @@
               {% endif %}
             </ul>
           </div><!--/.nav-collapse -->
+        {% endblock %}
         </div>
-      {% endblock %}
       </div>
       
     </div>

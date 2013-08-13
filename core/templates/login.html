@@ -2,7 +2,9 @@
 
 {% block title %} Login {% endblock %}
 
-{% block topbar %}{% endblock %}
+{% block topbar %}
+    <a class="brand hidden-desktop" href="{% url 'home' %}">Progetto Qualit&agrave;</a>
+{% endblock %}
 
 {% block header %}
     <span class="hidden-phone">
