@@ -62,16 +62,18 @@
           <div class="nav-collapse collapse">
             <ul class="nav">
               <li class="active"><a href="{% url 'home' %}">Home</a></li>
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Interrogazioni <b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                  {% for int in interrogazioni %}
-                    <li><a href="{% url 'valutazioni' int.id %}">{{ int.titolo }}</a></li>
-                  {% endfor %}
-                </ul>
-              </li>
               {% if user.is_superuser %}<li><a href="/admin"><i class="icon-puzzle-piece"></i> Admin</a></li>{% endif %}
-              {% if user.is_authenticated %}<li><a href="{% url 'logout' %}"><i class="icon-signout"></i> Logout</a></li>{% endif %}
+              {% if user.is_authenticated %}
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Interrogazioni <b class="caret"></b></a>
+                  <ul class="dropdown-menu">
+                    {% for int in interrogazioni %}
+                      <li><a href="{% url 'valutazioni' int.id %}">{{ int.titolo }}</a></li>
+                    {% endfor %}
+                  </ul>
+                </li>
+                <li><a href="{% url 'logout' %}"><i class="icon-signout"></i> Logout</a></li>
+              {% endif %}
             </ul>
           </div><!--/.nav-collapse -->
         </div>
