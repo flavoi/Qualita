@@ -3,4 +3,5 @@
 *.db
 *.js
 *.css
+migrations
 local.py
