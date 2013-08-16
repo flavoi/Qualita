@@ -30,14 +30,17 @@ def get_interrogazioni(request):
     @param current_url:       id URL corrente
 """
 @login_required
-def get_valutazioni(request, id_interrogazione, current_url=None):
+def get_valutazioni(request, id_interrogazione, slug=None, current_url=None):
 
     ValutazioniFormSet = modelformset_factory(Score, form=ValutazioniForm, extra=1, max_num=1)
     
     # Raccolta dati e Paginazione
     page = request.GET.get('pagina')
     
-    interrogazione = Interrogazione.objects.get(id=id_interrogazione)                
+    if slug:
+        interrogazione = Interrogazione.objects.get(slug=slug)
+    else:
+        interrogazione = Interrogazione.objects.get(id=id_interrogazione)                
     url_list = interrogazione.url.all()
     paginator = Paginator(url_list, 1)
     try:

@@ -19,7 +19,7 @@ class URL(models.Model):
 class Interrogazione(models.Model):
     titolo = models.CharField(max_length=50)
     descrizione = models.TextField()
-    slug = models.SlugField(max_length=250)
+    slug = models.SlugField(max_length=250, unique=True)
     url = models.ManyToManyField(URL)
     
     class Meta:

@@ -68,7 +68,7 @@
                   <a href="#" class="dropdown-toggle hidden-phone" data-toggle="dropdown">Interrogazioni <b class="caret"></b></a>
                   <ul class="dropdown-menu">
                     {% for int in interrogazioni %}
-                      <li><a href="{% url 'valutazioni' int.id %}">{{ int.titolo }}</a></li>
+                      <li><a href="{% url 'valutazioni' int.slug int.id %}">{{ int.titolo }}</a></li>
                     {% endfor %}
                   </ul>
                 </li>
