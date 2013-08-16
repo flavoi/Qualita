@@ -30,17 +30,14 @@ def get_interrogazioni(request):
     @param current_url:       id URL corrente
 """
 @login_required
-def get_valutazioni(request, id_interrogazione, slug=None, current_url=None):
+def get_valutazioni(request, id_interrogazione, slug, current_url=None):
 
     ValutazioniFormSet = modelformset_factory(Score, form=ValutazioniForm, extra=1, max_num=1)
     
     # Raccolta dati e Paginazione
     page = request.GET.get('pagina')
     
-    if slug:
-        interrogazione = Interrogazione.objects.get(slug=slug)
-    else:
-        interrogazione = Interrogazione.objects.get(id=id_interrogazione)                
+    interrogazione = Interrogazione.objects.get(id=id_interrogazione)                
     url_list = interrogazione.url.all()
     paginator = Paginator(url_list, 1)
     try:
@@ -63,7 +60,7 @@ def get_valutazioni(request, id_interrogazione, slug=None, current_url=None):
         formset.save()
         if formset.has_changed():
             messages.success(request, "Voto n. %s inviato con successo!" % url.id )
-        return HttpResponseRedirect(reverse("valutazioni", args=(id_interrogazione,)) + "?pagina=" + page)
+        return HttpResponseRedirect(reverse("valutazioni", kwargs={'id_interrogazione': id_interrogazione, 'slug': slug}) + "?pagina=" + page)
     else:
         page_query = Score.objects.filter(url__in = [url.id for url in url_list]).filter(author=request.user)
         interrogazione = Interrogazione.objects.get(id=id_interrogazione)

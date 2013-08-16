@@ -83,7 +83,7 @@
             </div>
 
             <div id="fixadent">
-                <form action="{% url 'votazioni' interrogazione.pk url.pk %}?pagina={% if url_list.has_next %}{{ url_list.next_page_number }}{% else %}{{ url_list.number }}{% endif %}" method="POST">{% csrf_token %}
+                <form action="{% url 'votazioni' interrogazione.slug interrogazione.pk url.pk %}?pagina={% if url_list.has_next %}{{ url_list.next_page_number }}{% else %}{{ url_list.number }}{% endif %}" method="POST">{% csrf_token %}
                     {% crispy formset formset.form.helper %}
                 </form> 
             </div>
