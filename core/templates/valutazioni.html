@@ -6,107 +6,28 @@
 
 {% block extrahead %}
 
-<link href="{{ STATIC_URL }}qualita/css/valutazioni.css" rel="stylesheet" media="screen">
+    <link href="{{ STATIC_URL }}qualita/css/valutazioni.css" rel="stylesheet" media="screen">
 
-<script type="text/javascript">
-    $(function ()
-    { 
-        $(".pophelp").popover({ trigger: "hover" });
-    }
-    );
-
-    $(function() {
-        var fixadent = $("#fixadent"), pos = fixadent.offset();
-        $(window).scroll(function() {
-        if($(this).scrollTop() > (pos.top + 10) && fixadent.css('position') == 'static') { fixadent.addClass('fixed'); }
-        else if($(this).scrollTop() <= pos.top && fixadent.hasClass('fixed')){ fixadent.removeClass('fixed'); }
-        })
-    });
-
-</script>
-
-<style type="text/css">
-.controls input {
-    margin-bottom: 12px;
-}
-</style>
-{% endblock %}
-
-{% block content %}
-
-{% for url in url_list %}
-    <div class="row hidden-desktop">
-        <div class="span12">
-            <div class="page-header">
-                <h2>{{ interrogazione|title }} <i class="icon-chevron-right"></i> <a target="_blank" href="{{ url }}">{{ url }}</h2></a>
-            </div>
-        </div>
-        {% for message in messages %}
-            <div class="span8 offset2">
-                <p class="alert alert-{{ message.tags }}" style="text-align: center;">
-                    {% ifequal message.tags 'success' %} <i class="icon-ok"></i>{% endifequal %}
-                    {% ifequal message.tags 'info' %} <i class="icon-info-sign"></i>{% endifequal %}
-                    {{ message }}
-                </p>
-            </div>
-        {% endfor %}
-    </div>
-
-    <div class="row hidden-desktop">
-        <div class="span12">  
-            <p>
-                Quali sono la rilevanza e la qualità della pagina web presentata qui 
-                sotto, rispetto all'interrogazione da voi scelta? 
-                Esprimete le vostre valutazioni inserendo un voto da 1 (pessimo)
-                a 5 (ottimo) per ciascun punto presente nella lista.
-            </p>
-            <p>
-                Una volta terminata la valutazione di questa pagina,
-                ricordatevi di cliccare su <strong>Conferma</strong> per inserire i vostri
-                voti; cliccate invece su una freccia <code><i class="icon-arrow-left"></i></code> o 
-                <code><i class="icon-arrow-right"></i></code> se desiderate valutare
-                un'altra pagina senza inserire i vostri voti per questa.
-             </p>
-            <p>
-                In caso di ripensamenti, potrete sempre modificare le vostre
-                valutazioni ritornando sui vostri passi.
-            </p>
-
-            <div class="pagination pagination-centered">
-                <ul>
-                    {% if url_list.has_previous %}
-                        <li><a href="?pagina={{ url_list.previous_page_number }}"><i class=" icon-arrow-left"></i></a></li>
-                    {% endif %}
-                        <li><a href="#">pagina {{ url_list.number }} di {{ url_list.paginator.num_pages }}</a></li>
-                    {% if url_list.has_next %}
-                        <li><a href="?pagina={{ url_list.next_page_number }}"><i class="icon-arrow-right"></i></a></li>
-                    {% endif %}
-                </ul>
-            </div>
-
-            <div id="fixadent">
-                <form action="{% url 'votazioni' interrogazione.slug interrogazione.pk url.pk %}?pagina={% if url_list.has_next %}{{ url_list.next_page_number }}{% else %}{{ url_list.number }}{% endif %}" method="POST">{% csrf_token %}
-                    {% crispy formset formset.form.helper %}
-                </form> 
-            </div>
-        </div>
-    </div>
-{% endfor %}
-
+    <script type="text/javascript">
+        $(function ()
+        { 
+            $(".pophelp").popover({ trigger: "hover" });
+        }
+        );
+    </script>
 
 {% endblock %}
-
 
 {% block content_fluid %}
 
 {% for url in url_list %}
-    <div class="row-fluid visible-desktop" style="text-align:center; border-bottom: 1px solid #eee; margin-top: 40px;">
+    <div class="row-fluid">
         <div class="span12">
-            <h2>{{ interrogazione|title }} <i class="icon-chevron-right"></i> <a target="_blank" href="{{ url }}">{{ url }}</h2></a>
+                <h2 class="text-center">{{ interrogazione|title }} <i class="icon-chevron-right"></i> <a target="_blank" href="{{ url }}">{{ url }}</h2></a>
         </div>
         {% for message in messages %}
             <div class="span8 offset2">
-                <p class="alert alert-{{ message.tags }}" style="text-align: center;">
+                <p class="alert alert-{{ message.tags }} text-center">
                     {% ifequal message.tags 'success' %} <i class="icon-ok"></i>{% endifequal %}
                     {% ifequal message.tags 'info' %} <i class="icon-info-sign"></i>{% endifequal %}
                     {{ message }}
@@ -115,8 +36,8 @@
         {% endfor %}
     </div>
 
-    <div class="row-fluid visible-desktop" style="height:100%;">
-        <div class="span3" style="margin-top:20px; border-right: 1px solid #eee; padding-right: 15px">  
+    <div class="row-fluid" id="first-row">
+        <div class="span3">  
             <p>
                 Quali sono la rilevanza e la qualità della pagina web presentata qui 
                 sotto, rispetto all'interrogazione da voi scelta? 
@@ -154,7 +75,7 @@
             </div>
         </div>
 
-        <div class="span9" style="margin-top: 20px; height:100%;">
+        <div class="span9" class="tall">
             {% if url.percorso_su_disco %}
                 <iframe id="qualita-frame" name="qualita-frame" src="{{ MEDIA_URL }}{{ url.get_percorso }}" height="100%" width="100%"></iframe>
             {% else %}
