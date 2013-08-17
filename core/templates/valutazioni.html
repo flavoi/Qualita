@@ -50,7 +50,7 @@
         {% endfor %}
     </div>
 
-    <div class="row-fluid" style="height: 100%;">
+    <div class="row-fluid" style="height:100%;">
         <div class="span3" style="margin-top:20px; border-right: 1px solid #eee; padding-right: 15px">  
             <p>
                 Quali sono la rilevanza e la qualità della pagina web presentata qui 
@@ -89,7 +89,7 @@
             </div>
         </div>
 
-        <div class="span9" style="margin-top: 20px; height:100%;">
+        <div class="span9 visible-desktop" style="margin-top: 20px; height:100%;">
             {% if url.percorso_su_disco %}
                 <iframe id="qualita-frame" name="qualita-frame" src="{{ MEDIA_URL }}{{ url.get_percorso }}" height="100%" width="100%"></iframe>
             {% else %}
