@@ -9,6 +9,7 @@ django-crispy-forms==1.2.7
 django-email-as-username==1.6.5
 django-extensions==1.1.1
 django-floppyforms==1.1
+django-grappelli==2.4.5
 django-reset==0.2.0
 django-s3-folder-storage==0.1
 django-simple-captcha==0.3.8
