@@ -47,10 +47,8 @@ USE_L10N = True
 # If you set this to False, Django will not use timezone-aware datetimes.
 USE_TZ = True
 
-
 # Additional locations of static files
 STATICFILES_DIRS = ()
-
 
 # List of finder classes that know how to find static files in
 # various locations.
@@ -96,6 +94,8 @@ TEMPLATE_DIRS = (
     # Don't forget to use absolute paths, not relative paths.
 )
 
+GRAPPELLI_ADMIN_TITLE = 'Progetto Qualità: Admin'
+
 CAPTCHA_CHALLENGE_FUNCT = 'captcha.helpers.math_challenge'
 
 ALLOWED_HOSTS = [
@@ -110,6 +110,7 @@ DJANGO_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'grappelli',
     'django.contrib.admin',
 )
 
