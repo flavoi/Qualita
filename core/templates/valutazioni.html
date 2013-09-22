@@ -30,21 +30,18 @@
                 </h2>
             </div>
         </div>
-        
-        {% for message in messages %}
-            <div class="span8 offset2">
+    </div>
+
+    <div class="row-fluid">
+        <div class="span3 left-panel">  
+            {% for message in messages %}
                 <div class="alert alert-{{ message.tags }} text-center">
                     {% ifequal message.tags 'success' %} <i class="icon-ok"></i>{% endifequal %}
                     {% ifequal message.tags 'info' %} <i class="icon-info-sign"></i>{% endifequal %}
                     {{ message }}
                     <button type='button' class='close' data-dismiss='alert'>×</button>
                 </div>
-            </div>
-        {% endfor %}
-    </div>
-
-    <div class="row-fluid">
-        <div class="span3 left-panel">  
+            {% endfor %}
             <p>
                 Quali sono la rilevanza e la qualità della pagina web presentata qui 
                 sotto, rispetto all'interrogazione da voi scelta? 
