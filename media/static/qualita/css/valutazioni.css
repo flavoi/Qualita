@@ -1,21 +1,39 @@
-/* Here's some tweaks for page number 3
+/* Here's some tweaks for page 3: valutazioni
 -------------------------------------------------- */
 
 iframe {
-    display: block;
-    height: 1024px;
-    width: 100%;
-    border: none;
+  display: block;
+  height: 1024px;
+  width: 100%;
+  border: none;
 }
 
 #first-row {
-    margin-top: 20px;
+  margin-top: 20px;
 }
 
 .controls input {
-    margin-bottom: 12px;
+  margin-bottom: 12px;
 }
 
 .asteriskField {
-    display: none;
+  display: none;
+}
+
+.left-panel
+{
+  padding-right:20px;
+  border-right: 1px solid #ccc;
+}
+
+.row-fluid .right-panel {
+  margin-left: -0.138297872340425%;
+  *margin-left: -0.13191489361702%;
+  padding-left:20px;
+  border-left: 1px solid #ccc;
+}
+
+.row-fluid .right-panel:first-child {
+  margin-left: -0.11063829787234%;
+  *margin-left: -0.104255319148938%;
 }
