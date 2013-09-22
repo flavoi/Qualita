@@ -39,7 +39,7 @@
             <ul class="nav nav-list">
             {% for int in interrogazioni %}
                 <li>
-                    <a href="{% url 'valutazioni' int.slug int.id %}"><i class="icon-arrow-right"></i> {{ int.titolo }}</a>
+                    <a href="{% url 'valutazioni' int.id int.slug %}"><i class="icon-arrow-right"></i> {{ int.titolo }}</a>
                     <p style="margin-left: 20px;"> {{ int.descrizione }}.</p>
                 </li>
             {% endfor %}

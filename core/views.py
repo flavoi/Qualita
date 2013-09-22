@@ -59,7 +59,7 @@ def get_valutazioni(request, id_interrogazione, slug, current_url=None):
                 form.author = request.user
         formset.save()
         if formset.has_changed():
-            messages.success(request, "Voto n. %s inviato con successo!" % url.id )
+            messages.success(request, "Voto n. %s salvato con successo!" % url.id )
         return HttpResponseRedirect(reverse("valutazioni", kwargs={'id_interrogazione': id_interrogazione, 'slug': slug}) + "?pagina=" + page)
     else:
         page_query = Score.objects.filter(url__in = [url.id for url in url_list]).filter(author=request.user)

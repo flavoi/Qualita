@@ -18,8 +18,8 @@ urlpatterns = patterns('',
 urlpatterns += patterns('core',
     url(r'^$', 'views.get_interrogazioni', name="home"),
     url(r'^valutazioni/interrogazione/(?P<id_interrogazione>\d{1,10})/$', 'views.get_valutazioni', name="valutazioni_old"),
-    url(r'^valutazioni/interrogazione/(?P<slug>[\w-]+)-(?P<id_interrogazione>\d{1,10})/$', 'views.get_valutazioni', name='valutazioni'),
-    url(r'^valutazioni/interrogazione/(?P<slug>[\w-]+)-(?P<id_interrogazione>\d{1,10})/url(?P<current_url>\d{1,10})/$', 'views.get_valutazioni', name="votazioni"),
+    url(r'^valutazioni/interrogazione/(?P<id_interrogazione>\d{1,10})/(?P<slug>[\w-]+)/$', 'views.get_valutazioni', name='valutazioni'),
+    url(r'^valutazioni/interrogazione/(?P<id_interrogazione>\d{1,10})/(?P<slug>[\w-]+)/url(?P<current_url>\d{1,10})/$', 'views.get_valutazioni', name="votazioni"),
 )
 
 # App auth
