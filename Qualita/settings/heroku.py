@@ -1,6 +1,6 @@
 import os
 
-DEBUG = True
+# DEBUG = True
 
 # Amazon S3 support
 AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
