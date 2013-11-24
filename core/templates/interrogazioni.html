@@ -14,12 +14,13 @@
     </div>
 
     {% for message in messages %}
-        <div class="span8 offset2">
-            <p class="alert alert-{{ message.tags }}" style="text-align: center;">
-                {% ifequal message.tags 'success' %} <i class="fa-ok"></i>{% endifequal %}
-                {% ifequal message.tags 'info' %} <i class="fa-info-sign"></i>{% endifequal %}
+        <div class="span6 offset3">
+            <div class="alert alert-{{ message.tags }} text-center">
+                {% ifequal message.tags 'success' %} <i class="fa fa-ok"></i>{% endifequal %}
+                {% ifequal message.tags 'info' %} <i class="fa fa-unlock"></i>{% endifequal %}
                 {{ message }}
-            </p>
+                <button type='button' class='close' data-dismiss='alert'><i class="fa fa-times"></i></button>
+            </div>
         </div>
     {% endfor %}
         
@@ -39,7 +40,7 @@
             <ul class="nav nav-list">
             {% for int in interrogazioni %}
                 <li>
-                    <a href="{% url 'valutazioni' int.id int.slug %}"><i class="fa-arrow-right"></i> {{ int.titolo }}</a>
+                    <a href="{% url 'valutazioni' int.id int.slug %}"><i class="fa fa-arrow-right"></i> {{ int.titolo }}</a>
                     <p style="margin-left: 20px;"> {{ int.descrizione }}.</p>
                 </li>
             {% endfor %}

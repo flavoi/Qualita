@@ -24,7 +24,7 @@ def registrazione(request):
             password = request.POST['password1']
             new_user = authenticate(email=email, password=password)
             auth_login(request, new_user)
-            messages.info(request, "Registrazione avvenuta con successo. Login effettuato.")
+            messages.info(request, "Registrazione avvenuta con successo.")
             return HttpResponseRedirect(reverse("home"))
         else:
             form_error = True
