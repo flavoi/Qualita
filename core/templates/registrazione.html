@@ -2,7 +2,21 @@
 
 {% block title %}Registrazione{% endblock %}
 
-{% block top-menu %}{% endblock %}
+{% block extrahead %}
+
+<script type="text/javascript">
+$('.js-captcha-refresh').click(function(){
+    $form = $(this).parents('form');
+
+    $.getJSON($(this).data('url'), {}, function(json) {
+        // This your should update captcha image src and captcha hidden input
+    });
+
+    return false;
+});
+</script>
+
+{% endblock %}
 
 {% block content %}
     <div class="row">
@@ -22,13 +36,15 @@
                     </div>
                     {% if form_error %}
                         <div class="control-group error">
-                          <div class="controls">
-                            <span class="help-inline">La registrazione &egrave; fallita.</span>
-                          </div>
+                            <div class="alert alert-error text-center">
+                              <i class="fa fa-exclamation-triangle"></i> Registrazione <strong>fallita</strong>.
+                              <button type='button' class='close' data-dismiss='alert'><i class="fa fa-times"></i></button>
+                            </div>
                         </div>
                     {% endif %}
                     </fieldset>
                     <button class="btn btn-warning" type="submit">Conferma</button>
+                    <button class='btn js-captcha-refresh'>Rigenera</button>
                 </form>
             </div>
         </div>

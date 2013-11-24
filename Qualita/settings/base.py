@@ -94,9 +94,11 @@ TEMPLATE_DIRS = (
     # Don't forget to use absolute paths, not relative paths.
 )
 
-GRAPPELLI_ADMIN_TITLE = 'Progetto Qualità: Admin'
+GRAPPELLI_ADMIN_TITLE = 'Amministrazione Progetto Qualita'
 
+# Captcha options
 CAPTCHA_CHALLENGE_FUNCT = 'captcha.helpers.math_challenge'
+CAPTCHA_FONT_SIZE = 28
 
 ALLOWED_HOSTS = [
     '.amazonaws.com.',
@@ -126,6 +128,7 @@ THIRD_PARTY_APPS = (
 LOCAL_APPS = (
     'core',
     'auth',
+    'ctrl',
 )
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS

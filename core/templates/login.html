@@ -34,7 +34,10 @@
                   <div class="controls">
                     <input class="input-block-level" type="text" name="email" placeholder="Indirizzo Email" id="emailError">
                     <input class="input-block-level" type="password" name="password" placeholder="Password" id="pwdError">
-                    <span class="help-inline">L'autenticazione &egrave; fallita.</span>
+                  </div>
+                  <div class="alert alert-error text-center">
+                    <i class="fa fa-exclamation-triangle"></i> Autenticazione <strong>fallita</strong>.
+                    <button type='button' class='close' data-dismiss='alert'>×</button>
                   </div>
                 </div>
                     {% else %}
@@ -42,8 +45,8 @@
                     <input class="input-block-level" type="password" name="password" placeholder="Password">
                 {% endif %}
             </fieldset>
-            <button class="btn btn-warning" type="submit">Login</button>
+            <button class="btn btn-warning" type="submit"><i class="fa fa-sign-in"></i> Login</button>
         </form>
-        <p>Ottenete le credenziali alla <a href="{% url 'registrazione' %}"><i class="icon-key"></i> pagina di registrazione</a>.</p>
+        <p>Ottenete le credenziali alla <a href="{% url 'registrazione' %}">pagina di registrazione</a>.</p>
     </div>
 {% endblock %}

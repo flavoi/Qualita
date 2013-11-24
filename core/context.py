@@ -1,10 +1,13 @@
 """
-	Custom context processors for this app
+	Custom context processors for the core app.
 """
 
 from datetime import date
 from models import Interrogazione
 
+"""
+    Automatic copyright to the current year.
+"""
 def copyright(request):
     START_YEAR = 2013
     this_year = date.today().year
@@ -14,7 +17,9 @@ def copyright(request):
     	copy_year = START_YEAR
     return {'copyright': copy_year}
 
-
+"""
+    Interrogazione objects are critical in many templates.
+"""
 def interrogazioni(request):
 	interrogazioni = Interrogazione.objects.all().values()
 	return {'interrogazioni': interrogazioni}

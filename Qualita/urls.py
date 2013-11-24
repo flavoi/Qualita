@@ -18,7 +18,7 @@ urlpatterns = patterns('',
 urlpatterns += patterns('core',
     url(r'^$', 'views.get_interrogazioni', name="home"),
     url(r'^valutazioni/interrogazione/(?P<id_interrogazione>\d{1,10})/$', 'views.get_valutazioni', name="valutazioni_old"),
-    url(r'^valutazioni/interrogazione/(?P<id_interrogazione>\d{1,10})/(?P<slug>[\w-]+)/$', 'views.get_valutazioni', name='valutazioni'),
+    url(r'^valutazioni/interrogazione/(?P<id_interrogazione>\d{1,10})/(?P<slug>[\w-]+)/$', 'views.get_valutazioni', name="valutazioni"),
     url(r'^valutazioni/interrogazione/(?P<id_interrogazione>\d{1,10})/(?P<slug>[\w-]+)/url(?P<current_url>\d{1,10})/$', 'views.get_valutazioni', name="votazioni"),
 )
 
@@ -30,4 +30,9 @@ urlpatterns += patterns('auth',
 # App captcha
 urlpatterns += patterns('',
     url(r'^captcha/', include('captcha.urls')),
+)
+
+# App ctrl
+urlpatterns += patterns('ctrl',
+    url(r'^stagione/chiusa', 'views.park_here', name="parcheggio"),
 )
