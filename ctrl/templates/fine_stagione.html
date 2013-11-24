@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %} Stagione chiusa {% endblock %}
+
+{% block header %}{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="span6 offset3">
+            <div class="page-header">
+                <div class="alert alert-{{ message.tags }}">
+                    <h2><i class="fa fa-minus-circle"></i> Stagione votazioni chiusa.</h2>
+                    <p>
+                      Non sar&agrave; pi&ugrave; possibile votare fino alla prossima apertura. <br />
+                      Ultima stagione trascorsa: {{ ultima_stagione.data_inizio}} - {{ ultima_stagione.data_fine }}
+                    </p>
+                    <p>-- L'amministrazione</p>
+            </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
