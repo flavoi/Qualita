@@ -11,12 +11,16 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 # Gestione messaggi
 from django.contrib import messages
 
+# Decoratori da pannello di controllo
+from ctrl.decorators import open_period_only
+
 # App assets
 from models import *
 from forms import ValutazioniForm
 
 # Renderizza la pagina iniziale
 @login_required
+@open_period_only
 def get_interrogazioni(request):
     interrogazioni = Interrogazione.objects.all()
     context = {
@@ -30,6 +34,7 @@ def get_interrogazioni(request):
     @param current_url:       id URL corrente
 """
 @login_required
+@open_period_only
 def get_valutazioni(request, id_interrogazione, slug, current_url=None):
 
     ValutazioniFormSet = modelformset_factory(Score, form=ValutazioniForm, extra=1, max_num=1)

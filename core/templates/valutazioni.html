@@ -26,7 +26,7 @@
         <div class="span8 offset2">
             <div class="page-header">
                 <h2 class="text-center">
-                    {{ interrogazione|title }} <i class="icon-chevron-right"></i> <a target="_blank" href="{{ url }}">{{ url }}</a>
+                    {{ interrogazione|title }} <i class="fa-chevron-right"></i> <a target="_blank" href="{{ url }}">{{ url }}</a>
                 </h2>
             </div>
         </div>
@@ -36,8 +36,8 @@
         <div class="span3 left-panel">  
             {% for message in messages %}
                 <div class="alert alert-{{ message.tags }} text-center">
-                    {% ifequal message.tags 'success' %} <i class="icon-ok"></i>{% endifequal %}
-                    {% ifequal message.tags 'info' %} <i class="icon-info-sign"></i>{% endifequal %}
+                    {% ifequal message.tags 'success' %} <i class="fa-ok"></i>{% endifequal %}
+                    {% ifequal message.tags 'info' %} <i class="fa-info-sign"></i>{% endifequal %}
                     {{ message }}
                     <button type='button' class='close' data-dismiss='alert'>×</button>
                 </div>
@@ -51,8 +51,8 @@
             <p>
                 Una volta terminata la valutazione di questa pagina,
                 ricordatevi di cliccare su <strong>Conferma</strong> per inserire i vostri
-                voti; cliccate invece su una freccia <code><i class="icon-arrow-left"></i></code> o 
-                <code><i class="icon-arrow-right"></i></code> se desiderate valutare
+                voti; cliccate invece su una freccia <code><i class="fa-arrow-left"></i></code> o 
+                <code><i class="fa-arrow-right"></i></code> se desiderate valutare
                 un'altra pagina senza inserire i vostri voti per questa.
              </p>
             <p>
@@ -63,11 +63,11 @@
             <div class="pagination pagination-centered">
                 <ul>
                     {% if url_list.has_previous %}
-                        <li><a href="?pagina={{ url_list.previous_page_number }}"><i class=" icon-arrow-left"></i></a></li>
+                        <li><a href="?pagina={{ url_list.previous_page_number }}"><i class=" fa-arrow-left"></i></a></li>
                     {% endif %}
                         <li><a href="#">pagina {{ url_list.number }} di {{ url_list.paginator.num_pages }}</a></li>
                     {% if url_list.has_next %}
-                        <li><a href="?pagina={{ url_list.next_page_number }}"><i class="icon-arrow-right"></i></a></li>
+                        <li><a href="?pagina={{ url_list.next_page_number }}"><i class="fa-arrow-right"></i></a></li>
                     {% endif %}
                 </ul>
             </div>

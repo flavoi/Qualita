@@ -1,4 +1,7 @@
 from django.db import models
+import datetime
+
+TODAY = datetime.date.today()
 
 """
     Aperta blocca l'operativita` se posta a False.
@@ -11,12 +14,12 @@ class Stagione(models.Model):
         ('0', 'chiusa'),
         ('1', 'aperta'),
     )
-    data_inizio = models.DateField() 
-    durata = models.PositiveIntegerField() # in giorni
+    data_inizio = models.DateField(default=TODAY)
+    data_fine = models.DateField(default=TODAY) # Da vincolare maggiore stretta alla prima
     stato = models.CharField(max_length=6, choices=STATI)
     
     class Meta:
         verbose_name_plural = "Stagioni"
     
     def __unicode__(self):
-        return u'Inizio: %s, durata in giorni: %s, stato: %s' % (self.data_inizio, self.durata, self.stato)
+        return u'%s' % (self.id)
