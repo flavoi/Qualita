@@ -36,8 +36,8 @@
         <div class="span3 left-panel">  
             {% for message in messages %}
                 <div class="alert alert-{{ message.tags }} text-center">
-                    {% ifequal message.tags 'success' %} <i class="fa fa-ok"></i>{% endifequal %}
-                    {% ifequal message.tags 'info' %} <i class="fa fa-info-sign"></i>{% endifequal %}
+                    {% ifequal message.tags 'success' %} <i class="fa fa-check"></i>{% endifequal %}
+                    {% ifequal message.tags 'info' %} <i class="fa fa-info"></i>{% endifequal %}
                     {{ message }}
                     <button type='button' class='close' data-dismiss='alert'>×</button>
                 </div>
