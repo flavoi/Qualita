@@ -2,21 +2,7 @@
 
 {% block title %}Registrazione{% endblock %}
 
-{% block extrahead %}
-
-<script type="text/javascript">
-$('.js-captcha-refresh').click(function(){
-    $form = $(this).parents('form');
-
-    $.getJSON($(this).data('url'), {}, function(json) {
-        // This your should update captcha image src and captcha hidden input
-    });
-
-    return false;
-});
-</script>
-
-{% endblock %}
+{% block extrahead %}{% endblock %}
 
 {% block content %}
     <div class="row">
@@ -44,7 +30,6 @@ $('.js-captcha-refresh').click(function(){
                     {% endif %}
                     </fieldset>
                     <button class="btn btn-warning" type="submit">Conferma</button>
-                    <button class='btn js-captcha-refresh'>Rigenera</button>
                 </form>
             </div>
         </div>
